@@ -1,0 +1,112 @@
+@import "./variable.css";
+
+.search-bar-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.search-bar-input {
+	width: 315px;
+	height: 63px;
+	border: 3px solid;
+	border-radius: 8px;
+	padding: 10px;
+	font-size: calc(var(--font-size-XL) * 0.65);
+	outline: none;
+	color: rgb(244, 253, 253);
+	background: var(--background-all-90);
+	border-image: var(--border-color-first) 1;
+	font-family: var(--font-text);
+}
+
+input::placeholder {
+	font-size: calc(var(--font-size-XL) * 0.65);
+	color: rgb(156, 157, 157);
+	font-family: var(--font-text);
+}
+
+.results {
+	color: white;
+	max-height: 300px;
+	overflow-x: auto;
+	width: 315px;
+	background: var(--background-all);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+	backdrop-filter: blur(5px);
+}
+
+.character-item {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 4px 8px;
+	list-style: none;
+	margin: 0.5rem 0;
+}
+
+.character-button {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	width: 100%;
+	background: var(--background-button);
+	border: none;
+	border-radius: 12px;
+	padding: 0.3rem 1rem;
+	cursor: pointer;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+	transition: all 0.2s ease-in-out;
+	color: #2a1d00;
+	font-family: var(--font-title);
+	font-weight: bold;
+	font-size: 1.5rem;
+	letter-spacing: 0.05rem;
+	text-align: left;
+}
+
+.character-button:hover {
+	transform: translateY(-2px);
+	background: linear-gradient(145deg, #d4af37, #f5d67b);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.character-button:focus {
+	outline: 2px solid #f5d67b;
+	outline-offset: 3px;
+}
+
+.character-button p {
+	margin: 0;
+	color: #1b1400;
+	text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.character-img {
+	width: 60px;
+	height: 60px;
+	object-fit: cover;
+	object-position: top;
+	border-radius: 8px;
+	border: 2px solid #6b4900;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.character-details {
+	color: white;
+}
+
+.input-error {
+	border: 2px solid red;
+}
+
+.error-message {
+	/*revoir les couleur */
+	color: #d9534f;
+	background-color: #f8d7da;
+	border: 1px solid #d9534f;
+	padding: 8px;
+	border-radius: 4px;
+	text-align: center;
+}

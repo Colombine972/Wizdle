@@ -8,9 +8,9 @@
 	--background-all-80: rgba(25, 68, 88, 0.8);
 	--background-all-90: rgba(25, 68, 88, 0.9);
 	--background-button: linear-gradient(
-		360deg,
+		90deg,
 		rgba(200, 170, 72, 1) 37%,
-		rgba(120, 102, 44, 0.45) 100%
+		rgba(120, 102, 44, 1) 100%
 	);
 
 	--border-color-first: linear-gradient(
@@ -31,8 +31,9 @@
 	--font-title: "Jaini", system-ui;
 	--font-text: "Alegreya", serif;
 
-	--font-size-XL: 4rem;
-	--font-size-L: 2rem;
+	--font-size-XXL: 4rem;
+	--font-size-XL: 2rem;
+	--font-size-L: 1.5rem;
 	--font-size-M: 1rem;
 	--font-size-S: 0.75rem;
 }
