@@ -1,0 +1,25 @@
+.rules-page {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 2rem;
+}
+
+/* PARCHEMIN POSÉ PAR-DESSUS */
+.parchment {
+	background-image: url("./src/assets/images/parchemin-ouvert.svg");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+
+	width: 90%;
+	max-width: 700px;
+	min-height: 500px;
+
+	padding: 3rem 2rem;
+	text-align: center;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
