@@ -2,6 +2,7 @@ import { Link, Outlet } from "react-router";
 import "./styles/reset.css";
 import "./styles/variable.css";
 import "./styles/App.css";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
 			<main>
 				<Outlet />
 			</main>
+			<Footer />
 		</div>
 	);
 }
