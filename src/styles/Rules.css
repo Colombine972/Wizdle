@@ -10,7 +10,7 @@
 }
 
 .marauder-open-map {
-	width: 600px; /* largeur finale souhaitée */
+	width: 360px; /* largeur finale souhaitée */
 	height: 500px; /* HAUTEUR UNIQUE POUR TOUT */
 	display: flex;
 	justify-content: center;
@@ -25,7 +25,7 @@
 	top: 0;
 	width: 50%;
 	height: 100%;
-	object-fit: contain;
+	/*object-fit: contain;*/
 }
 
 /* Animation ouverture */
@@ -77,8 +77,8 @@
 }
 
 .parchment-image {
-	height: 100%; /* même hauteur que les pages */
-	width: 360px;
+	height: 500px; /* même hauteur que les pages */
+	width: 100%;
 	object-fit: cover;
 }
 
@@ -93,19 +93,76 @@
 	flex-direction: column; /* textarea AU-DESSUS du bouton */
 	align-items: center;
 	gap: 12px;
+	max-height: 80%;
+	overflow-y: auto;
+	padding-right: 6px;
 }
 
 .parchment-textarea {
 	width: 100%;
 	min-height: 100px;
 	padding: 10px;
-	font-size: 1.2rem;
+	font-size: 1rem;
 	text-align: center;
 	border-radius: 6px;
 	border: 3px solid #7a5b2f;
 	background: rgba(255, 255, 255, 0.85);
 	resize: none;
 }
+
+/* MOBILE : on garde la même logique mais plus petit */
+@media screen and (max-width: 600px) {
+	.marauder-open-map {
+		width: 260px;
+		height: 340px; /* Réduction réelle */
+	}
+
+	.parchment-container {
+		position: absolute;
+		width: 93%; /* plus étroit que 60% */
+		height: 340px; /* visible, mais bien plus petit */
+		top: 50%; /* IMPORTANT */
+		left: 50%; /* IMPORTANT */
+		transform: translate(-50%, -50%);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		z-index: 3;
+	}
+
+	.parchment-image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.serment-container {
+		width: 80%;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	@keyframes openLeft {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(-120px);
+		}
+	}
+
+	@keyframes openRight {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(120px);
+		}
+	}
+}
+
+/* ================================*/
 
 .error-msg {
 	min-height: 40px; /*réserve un espace fixe */
@@ -121,16 +178,6 @@
 .error-msg.visible {
 	opacity: 1; /* visible quand erreur */
 }
-
-/*.input-button {
-	padding: 8px 14px;
-	background: var(--background-button);
-	border: none;
-	border-radius: 6px;
-	color: white;
-	font-size: 1.2rem;
-	cursor: pointer;
-}*/
 
 .parchment-container.magic-glow {
 	animation: glowSpell 1.8s ease-out forwards;
@@ -149,12 +196,12 @@
 }
 
 .magic-text {
-	font-family: "Harry P", serif;
+	font-family: var(--font-text);
+	font-size: 0.85rem;
 	white-space: pre-line; /* garde les sauts de ligne */
-	overflow: hidden;
-	height: 0; /* l’animation part de 0 */
-	animation: revealDown 4s steps(100, end) forwards;
-	animation-delay: 2s; /* attend la fumée */
+	overflow-y: visible;
+	height: auto; /* l’animation part de 0 */
+	max-height: inherit;
 	position: relative;
 	padding-right: 0.4em;
 }
@@ -211,4 +258,21 @@
 		opacity: 1;
 		transform: translateY(0);
 	}
+}
+
+.rules-container {
+	max-height: 70%; /* le texte RESTE dans le parchemin */
+	width: 90%; /* marges internes plus jolies */
+	overflow-y: auto; /* scroll interne si besoin */
+	padding-right: 8px; /* espace pour la scrollbar */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.rules-scroll {
+	max-height: 65%; /* seulement la zone de texte */
+	overflow-y: auto; /* scroll automatique UNIQUEMENT si dépasse */
+	width: 100%;
+	padding-right: 8px; /* espace pour la scrollbar */
 }
