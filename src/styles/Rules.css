@@ -1,27 +1,189 @@
-.rules-page {
+/* PAGE DE BASE */
+.marauder-open-container {
+	min-height: 100vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	position: relative;
 	padding: 0;
 	background: transparent;
 }
 
-/* PARCHEMIN POSÉ PAR-DESSUS */
-.rules-image {
-	background-image: url("../assets/images/parchemin-ouvert.svg");
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-	z-index: 2;
-	width: 90%;
-	max-width: 700px;
-	min-height: 500px;
-	color: black;
-	padding: 0;
-	margin: 0;
-	text-align: center;
+.marauder-open-map {
+	width: 600px; /* largeur finale souhaitée */
+	height: 500px; /* HAUTEUR UNIQUE POUR TOUT */
 	display: flex;
-	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	position: relative;
+}
+
+/* Demi map */
+.map-left-half,
+.map-right-half {
+	position: absolute;
+	top: 0;
+	width: 50%;
+	height: 100%;
+	object-fit: contain;
+}
+
+/* Animation ouverture */
+.map-left-half {
+	left: 0;
+	animation: openLeft 1.2s forwards ease-out;
+	transform-origin: right center;
+	object-position: right;
+}
+
+.map-right-half {
+	right: 0;
+	animation: openRight 1.2s forwards ease-out;
+	transform-origin: left center;
+	object-position: left;
+}
+
+@keyframes openLeft {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(-180px);
+	}
+}
+
+@keyframes openRight {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(180px);
+	}
+}
+
+/* PARCHEMIN */
+
+/* container image + texte + boutton */
+.parchment-container {
+	position: absolute;
+	width: 360px; /* ou 360px si tu veux fixe */
+	height: 100%;
+	left: 50%;
+	top: 0;
+	transform: translateX(-50%);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.parchment-image {
+	height: 100%; /* même hauteur que les pages */
+	width: 360px;
+	object-fit: cover;
+}
+
+/*par dessus le parchemin*/
+.serment-container {
+	position: absolute; /* centre sur le parchemin */
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 80%;
+	display: flex;
+	flex-direction: column; /* textarea AU-DESSUS du bouton */
+	align-items: center;
+	gap: 12px;
+}
+
+.parchment-input {
+	width: 100%;
+	min-height: 100px;
+	padding: 10px;
+	font-size: 1.2rem;
+	text-align: center;
+	border-radius: 6px;
+	border: 3px solid #7a5b2f;
+	background: rgba(255, 255, 255, 0.85);
+	resize: none;
+}
+
+.error-msg {
+	min-height: 40px; /*réserve un espace fixe */
+	font-size: 1rem;
+	text-align: center;
+	margin: 0;
+	color: #7a0000;
+	font-weight: bold;
+	opacity: 0; /* invisible si pas d’erreur */
+	transition: opacity 0.2s;
+}
+
+.error-msg.visible {
+	opacity: 1; /* visible quand erreur */
+}
+
+.input-button {
+	padding: 8px 14px;
+	background: var(--background-button);
+	border: none;
+	border-radius: 6px;
+	color: white;
+	font-size: 1.2rem;
+	cursor: pointer;
+}
+
+.parchment-container.magic-glow {
+	animation: glowSpell 1.8s ease-out forwards;
+}
+
+@keyframes glowSpell {
+	0% {
+		filter: drop-shadow(0 0 0px gold);
+	}
+	50% {
+		filter: drop-shadow(0 0 25px gold) drop-shadow(0 0 40px goldenrod);
+	}
+	100% {
+		filter: drop-shadow(0 0 8px goldenrod);
+	}
+}
+
+.magic-text {
+	font-family: "Harry P", serif;
+	white-space: pre-line; /* garde les sauts de ligne */
+	overflow: hidden;
+	height: 0; /* l’animation part de 0 */
+	animation: revealDown 4s steps(100, end) forwards;
+	animation-delay: 2s; /* attend la fumée */
+	position: relative;
+	padding-right: 0.4em;
+}
+@keyframes revealDown {
+	from {
+		height: 0;
+	}
+	to {
+		height: 100%; /* le texte descend entièrement */
+	}
+}
+.magic-text::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 6px;
+	height: 1.2rem;
+	background: gold;
+	animation: blinkCursor 0.7s infinite;
+	animation-delay: 2s;
+}
+
+@keyframes blinkCursor {
+	0%,
+	100% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
 }

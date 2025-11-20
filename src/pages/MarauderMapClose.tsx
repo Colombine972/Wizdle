@@ -1,17 +1,25 @@
 import { useNavigate } from "react-router";
-import parchemin from "../assets/images/parchemin-ouvert.svg";
+import parcheminClose from "../assets/images/marauder-map-close.jpg";
+import "../styles/MarauderMapClose.css";
 
 function MarauderMapClose() {
 	const navigate = useNavigate();
 
 	return (
-		<button
-			type="button"
-			onClick={() => navigate("/marauder-map/open")}
-			className="marouder-map-close"
-		>
-			<img src={parchemin} alt="marouder card" />
-		</button>
+		<div className="marauder-container">
+			<button
+				className="button-reset"
+				type="button"
+				title="ouvrir la carte du marauder"
+				onClick={() => navigate("/marauder-map/rules")}
+			>
+				<img
+					className="marauder-map"
+					src={parcheminClose}
+					alt="carte du marauder"
+				/>
+			</button>
+		</div>
 	);
 }
 export default MarauderMapClose;
