@@ -1,43 +1,46 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import type { Character } from "../interfaces/interfaces";
 
-function Search() {
-	const [guess, setGuess] = useState("");
-	const [dataApi, setDataApi] = useState<Character[]>([]);
-	const [listCharacter, setListCharacter] = useState<Character[]>([]);
-	const [errorApi, setErrorApi] = useState<string | null>(null);
-	const [resultNotFound, setResultNotFound] = useState(false);
-	const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(
-		null,
-	);
+interface SearchProps {
+	setAnswers: React.Dispatch<React.SetStateAction<Character[]>>;
+	errorApi: string | null;
+	characters: Character[];
+	setErrorApi: React.Dispatch<React.SetStateAction<string | null>>;
+	answers: Character[];
+	setVictory: React.Dispatch<React.SetStateAction<boolean>>;
+	todayCharacter: Character | undefined;
+}
 
-	useEffect(() => {
-		fetch("https://test-api-5zsf.onrender.com/harry_potter")
-			.then((response) => response.json())
-			.then((characters) => {
-				setDataApi(characters);
-			})
-			.catch(() => setErrorApi("Les personnages ont disparu 😲"));
-	}, []);
+function Search({
+	errorApi,
+	setErrorApi,
+	answers,
+	setAnswers,
+	todayCharacter,
+	characters,
+	setVictory,
+}: SearchProps) {
+	const [guess, setGuess] = useState("");
+	const [listCharacter, setListCharacter] = useState<Character[]>([]);
+	const [resultNotFound, setResultNotFound] = useState(false);
 
 	const normalize = (text: string) =>
 		text
 			.normalize("NFD")
 			.replace(/\p{Diacritic}/gu, "")
 			.toLowerCase();
-
 	const changeSearchBar = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value;
 		setGuess(value);
 		setErrorApi(null);
-
 		setResultNotFound(false);
 
 		if (value.trim() === "") {
 			setListCharacter([]);
 		} else {
-			const results = dataApi
+			const results = characters
 				.filter((item) => normalize(item.nom).startsWith(normalize(value)))
+				.filter((item) => !answers.some((character) => character === item))
 				.sort((a, b) => a.nom.localeCompare(b.nom));
 
 			setListCharacter(results);
@@ -48,10 +51,18 @@ function Search() {
 		}
 	};
 
+	function victory(character: Character) {
+		if (!character || !characters) return;
+		if (character.id === todayCharacter?.id) {
+			setVictory(true);
+		}
+	}
+
 	const selectCharacter = (character: Character) => {
-		setSelectedCharacter(character);
 		setGuess("");
 		setListCharacter([]);
+		setAnswers((prev) => [character, ...prev]);
+		victory(character);
 	};
 
 	return (
@@ -90,18 +101,6 @@ function Search() {
 					</li>
 				) : null}
 			</ul>
-
-			{selectedCharacter && (
-				<div className="character-details">
-					<p>{selectedCharacter.nom}</p>
-					<p>Espece :{selectedCharacter.espece || "Inconnue"}</p>
-					<p>Genre : {selectedCharacter.genre || "Inconnue"}</p>
-					<p>Ascendance : {selectedCharacter.ascendance || "Inconnue"}</p>
-					<p>Maison : {selectedCharacter.maison || "Inconnue"}</p>
-					<p>En vie ? : {selectedCharacter.vivant || "Inconnue"}</p>
-					<p>Cheveux : {selectedCharacter.couleur_cheveux || "Inconnue"}</p>
-				</div>
-			)}
 		</div>
 	);
 }
