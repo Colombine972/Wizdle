@@ -5,14 +5,26 @@ import marauderMapGauche from "../assets/images/marauder-map-gauche.jpg";
 import parcheminVide from "../assets/images/parchemin-vide.webp";
 import "../styles/Rules.css";
 
+const fullText = `📜 Règles du jeu
+      
+Bienvenue jeune sorcier !
+Le but du jeu est simple : trouve le personnage mystère du jour !
+
+Toutes tes tentatives seront affichées et comparées avec le personnage secret…
+
+Bonne chance, et que la magie soit avec toi ✨`;
+
 function Rules() {
 	const [showParchment, setShowParchment] = useState(false);
 	const [answerOath, setAnswerOath] = useState("");
 	const [errorOath, setErrorOath] = useState("");
 	const [validOath, setValidOath] = useState(false);
+	const [gameButton, setGameButton] = useState(false);
 	const navigate = useNavigate();
 	const requiredOath =
 		"je jure solennellement que mes intentions sont mauvaises";
+
+	const [displayedText, setDisplayedText] = useState("");
 
 	useEffect(() => {
 		setTimeout(() => setShowParchment(true), 1200);
@@ -33,6 +45,20 @@ function Rules() {
 			setValidOath(true);
 		}
 	}, [answerOath, normalize]);
+
+	useEffect(() => {
+		if (!validOath) return;
+
+		let i = 0;
+		const interval = setInterval(() => {
+			setDisplayedText(fullText.slice(0, i));
+			i++;
+			if (i > fullText.length) {
+				clearInterval(interval);
+				setGameButton(true); // ton bouton apparaît après
+			}
+		}, 50); // vitesse d’écriture
+	}, [validOath]);
 
 	return (
 		<div className="marauder-open-container">
@@ -60,7 +86,7 @@ function Rules() {
 							{!validOath && (
 								<>
 									<textarea
-										className="parchment-input"
+										className="parchment-textarea"
 										placeholder="Prononce le serment..."
 										value={answerOath}
 										onChange={(e) => {
@@ -75,19 +101,17 @@ function Rules() {
 							)}
 							{validOath && (
 								<div className="rules-container">
-									<div className="magic-text">
-										📜 Règles du jeu Bienvenue jeune sorcier ! Le but du jeu est
-										simple : trouve le personnage mystère du jour ! Toutes tes
-										tentatives seront affichées et comparées avec le personnage
-										secret… Bonne chance, et que la magie soit avec toi ✨
-									</div>
-									<button
-										type="button"
-										title="ouvrir la carte du marauder"
-										onClick={() => navigate("/game")}
-									>
-										A toi de jouer, sorcier !
-									</button>
+									<div className="magic-text">{displayedText}</div>
+									{gameButton && (
+										<button
+											type="button"
+											title="accès au jeu"
+											onClick={() => navigate("/game")}
+											className="game-button"
+										>
+											A toi de jouer, sorcier !
+										</button>
+									)}
 								</div>
 							)}
 						</div>

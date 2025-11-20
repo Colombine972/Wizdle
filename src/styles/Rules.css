@@ -95,7 +95,7 @@
 	gap: 12px;
 }
 
-.parchment-input {
+.parchment-textarea {
 	width: 100%;
 	min-height: 100px;
 	padding: 10px;
@@ -122,7 +122,7 @@
 	opacity: 1; /* visible quand erreur */
 }
 
-.input-button {
+/*.input-button {
 	padding: 8px 14px;
 	background: var(--background-button);
 	border: none;
@@ -130,7 +130,7 @@
 	color: white;
 	font-size: 1.2rem;
 	cursor: pointer;
-}
+}*/
 
 .parchment-container.magic-glow {
 	animation: glowSpell 1.8s ease-out forwards;
@@ -185,5 +185,30 @@
 	}
 	50% {
 		opacity: 1;
+	}
+}
+
+.game-button {
+	opacity: 0;
+	animation: fadeIn 1.3s forwards ease-out;
+	margin-top: 18px;
+	padding: 10px 18px;
+	font-size: var(--font-size-S);
+	background: var(--background-button);
+	color: black;
+	border: 2px solid gold;
+	border-radius: 8px;
+	cursor: pointer;
+	font-family: var(--font-title);
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
 	}
 }
