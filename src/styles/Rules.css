@@ -202,6 +202,25 @@
 	display: none !important;
 }*/
 
+.rules-scroll::-webkit-scrollbar {
+	width: 6px;
+}
+
+.rules-scroll::-webkit-scrollbar-track {
+	background: rgba(255, 248, 220, 0.2); /* beige parchemin semi-transparent */
+	border-radius: 10px;
+}
+
+.rules-scroll::-webkit-scrollbar-thumb {
+	background: linear-gradient(180deg, #d7c285, #b99a56); /* doré sombre */
+	border-radius: 10px;
+	border: 1px solid #8b6f3d; /* bordure encre */
+}
+
+.rules-scroll::-webkit-scrollbar-thumb:hover {
+	background: linear-gradient(180deg, #e4cfa0, #c2a66a); /* effet survol : plus lumineux */
+}
+
 .game-button {
 	opacity: 0;
 	animation: fadeIn 1.3s forwards ease-out;

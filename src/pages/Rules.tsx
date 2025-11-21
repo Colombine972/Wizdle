@@ -31,9 +31,7 @@ Vous ajustez ensuite vos suppositions en fonction des retours.
 Un bouton Indice apparaît après un certain nombre d’essais.
 L’indice révèle la première lettre du prénom mais réduit votre score final.
 
-Le score dépend du nombre de tentatives, du temps écoulé et de l’usage de l’indice.
-
-Des modes supplémentaires existent : partie du jour, partie de la veille, calendrier, et classement journalier.`;
+Le score dépend du nombre de tentatives, du temps écoulé et de l’usage de l’indice.`;
 
 function Rules() {
 	const [showParchment, setShowParchment] = useState(false);
