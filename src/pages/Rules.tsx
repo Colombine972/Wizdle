@@ -24,13 +24,11 @@ Chaque personnage possède plusieurs caractéristiques à analyser : espèce, ge
 🟥 Rouge signifie que la caractéristique est incorrecte.
 
 La recherche s’effectue dans une barre dédiée avec une liste de suggestions.
-
 Vous validez un personnage pour obtenir immédiatement les indices colorés.
 
 Vous ajustez ensuite vos suppositions en fonction des retours.
 
 Un bouton Indice apparaît après un certain nombre d’essais.
-
 L’indice révèle la première lettre du prénom mais réduit votre score final.
 
 Le score dépend du nombre de tentatives, du temps écoulé et de l’usage de l’indice.
@@ -80,7 +78,7 @@ function Rules() {
 				clearInterval(interval);
 				setGameButton(true); // ton bouton apparaît après
 			}
-		}, 30); // vitesse d’écriture
+		}, 20); // vitesse d’écriture
 	}, [validOath]);
 
 	return (
