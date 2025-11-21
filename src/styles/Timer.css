@@ -1,0 +1,32 @@
+.chrono-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	width: 100%;
+	border: 3px solid;
+	border-radius: 8px;
+	padding: 10px 0px;
+	font-size: var(--font-size-L);
+	color: rgb(244, 253, 253);
+	background: var(--background-all-90);
+	border-image: var(--border-color-first) 1;
+	font-family: var(--font-text);
+}
+
+.chrono-container p {
+	width: 6rem;
+	text-align: center;
+}
+
+.chrono-container img {
+	width: 6rem;
+}
+
+@media screen and (min-width: 700px) {
+	.chrono-container {
+		flex-direction: row;
+		padding: 10px 20px 10px 0px;
+	}
+}

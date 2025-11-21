@@ -2,13 +2,14 @@ import { useState } from "react";
 import type { Character } from "../interfaces/interfaces";
 
 interface SearchProps {
-	setAnswers: React.Dispatch<React.SetStateAction<Character[]>>;
+	setTime: React.Dispatch<React.SetStateAction<number>>;
 	errorApi: string | null;
-	characters: Character[];
 	setErrorApi: React.Dispatch<React.SetStateAction<string | null>>;
 	answers: Character[];
+	setAnswers: React.Dispatch<React.SetStateAction<Character[]>>;
+	todayCharacter: Character;
+	characters: Character[];
 	setVictory: React.Dispatch<React.SetStateAction<boolean>>;
-	todayCharacter: Character | undefined;
 }
 
 function Search({
@@ -19,10 +20,29 @@ function Search({
 	todayCharacter,
 	characters,
 	setVictory,
+	setTime,
 }: SearchProps) {
 	const [guess, setGuess] = useState("");
 	const [listCharacter, setListCharacter] = useState<Character[]>([]);
 	const [resultNotFound, setResultNotFound] = useState(false);
+	const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
+
+	function start() {
+		if (!intervalId) {
+			const startTime = Date.now();
+			const id = setInterval(() => {
+				setTime(Date.now() - startTime);
+			}, 10);
+			setIntervalId(id);
+		}
+	}
+
+	function stop() {
+		if (intervalId) {
+			clearInterval(intervalId);
+			setIntervalId(null);
+		}
+	}
 
 	const normalize = (text: string) =>
 		text
@@ -55,53 +75,57 @@ function Search({
 		if (!character || !characters) return;
 		if (character.id === todayCharacter?.id) {
 			setVictory(true);
+			stop();
 		}
 	}
 
 	const selectCharacter = (character: Character) => {
 		setGuess("");
 		setListCharacter([]);
+		start();
 		setAnswers((prev) => [character, ...prev]);
 		victory(character);
 	};
 
 	return (
-		<div className="search-bar-container">
-			<input
-				className={`search-bar-input ${resultNotFound ? "input-error" : ""}`}
-				type="text"
-				value={guess}
-				onChange={changeSearchBar}
-				placeholder="Quel personnage suis-je ?"
-			/>
-			{errorApi && <p className="error-message">⚠️ {errorApi}</p>}
-			<ul
-				className={`results ${listCharacter.length > 0 ? "has-results" : ""}`}
-			>
-				{listCharacter.length > 0 ? (
-					listCharacter.map((item: Character) => (
-						<li key={item.id} className="character-item">
-							<button
-								type="button"
-								className="character-button"
-								onClick={() => selectCharacter(item)}
-							>
-								<img
-									src={item.image}
-									alt={item.nom}
-									className="character-img"
-								/>
-								<p>{item.nom}</p>
-							</button>
+		<>
+			<div className="search-bar-container">
+				<input
+					className={`search-bar-input ${resultNotFound ? "input-error" : ""}`}
+					type="text"
+					value={guess}
+					onChange={changeSearchBar}
+					placeholder="Quel personnage suis-je ?"
+				/>
+				{errorApi && <p className="error-message">⚠️ {errorApi}</p>}
+				<ul
+					className={`results ${listCharacter.length > 0 ? "has-results" : ""}`}
+				>
+					{listCharacter.length > 0 ? (
+						listCharacter.map((item: Character) => (
+							<li key={item.id} className="character-item">
+								<button
+									type="button"
+									className="character-button"
+									onClick={() => selectCharacter(item)}
+								>
+									<img
+										src={item.image}
+										alt={item.nom}
+										className="character-img"
+									/>
+									<p>{item.nom}</p>
+								</button>
+							</li>
+						))
+					) : guess !== "" ? (
+						<li className="error-message">
+							Pas très doué(e) en divination, hein ? 🔮
 						</li>
-					))
-				) : guess !== "" ? (
-					<li className="error-message">
-						Pas très doué(e) en divination, hein ? 🔮
-					</li>
-				) : null}
-			</ul>
-		</div>
+					) : null}
+				</ul>
+			</div>
+		</>
 	);
 }
 
