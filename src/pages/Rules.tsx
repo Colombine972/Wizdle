@@ -1,37 +1,32 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import indice from "../assets/images/indice.webp";
 import marauderMapDroite from "../assets/images/marauder-map-droite.jpg";
 import marauderMapGauche from "../assets/images/marauder-map-gauche.jpg";
 import parcheminVide from "../assets/images/parchemin-vide.webp";
+import validationSerment from "../assets/images/validation-serment2.png";
 import "../styles/Rules.css";
 
-const fullText = `🪄 Règles du jeu – WIZDLE : Le défi des sorciers
+const fullText = `🪄 Règles du jeu – 
 
-WIZDLE est un jeu de déduction basé sur l’univers d’Harry Potter.
+WIZDLE est un jeu de déduction dans l’univers d’Harry Potter.
 
-Le but est de trouver le personnage mystère du jour.
+Chaque jour, un personnage mystère est choisi aléatoirement.
+Votre mission est de le deviner en un minimum d’essais et de temps.
 
-Un nouveau personnage est choisi chaque jour de manière aléatoire.
+Choisissez un personnage via la barre de recherche et validez votre tentative.
 
-Vous devez deviner en un minimum d’essais et de temps.
+Un tableau affiche les retours pour chaque caractéristique : espèce, genre, sang, maison, statut de vie et cheveux.
 
-Chaque personnage possède plusieurs caractéristiques à analyser : espèce, genre, sang, maison, statut de vie, cheveux.
+🟩 Vert = la caractéristique est correcte.
 
-À chaque tentative, un tableau affiche votre réponse et les retours.
+🟥 Rouge = elle est incorrecte.
 
-🟩 Vert signifie que la caractéristique est correcte.
+Affinez vos choix en fonction des retours.
 
-🟥 Rouge signifie que la caractéristique est incorrecte.
+Un bouton Indice apparaît après plusieurs essais et révèle la première lettre du prénom (mais réduit le score).
 
-La recherche s’effectue dans une barre dédiée avec une liste de suggestions.
-Vous validez un personnage pour obtenir immédiatement les indices colorés.
-
-Vous ajustez ensuite vos suppositions en fonction des retours.
-
-Un bouton Indice apparaît après un certain nombre d’essais.
-L’indice révèle la première lettre du prénom mais réduit votre score final.
-
-Le score dépend du nombre de tentatives, du temps écoulé et de l’usage de l’indice.`;
+Votre score final dépend des tentatives, du temps et de l’usage de l’indice.`;
 
 function Rules() {
 	const [showParchment, setShowParchment] = useState(false);
@@ -39,11 +34,11 @@ function Rules() {
 	const [errorOath, setErrorOath] = useState("");
 	const [validOath, setValidOath] = useState(false);
 	const [gameButton, setGameButton] = useState(false);
+	const [showClue, setShowClue] = useState(false);
+	const [displayedText, setDisplayedText] = useState("");
 	const navigate = useNavigate();
 	const requiredOath =
 		"je jure solennellement que mes intentions sont mauvaises";
-
-	const [displayedText, setDisplayedText] = useState("");
 
 	useEffect(() => {
 		setTimeout(() => setShowParchment(true), 1200);
@@ -59,11 +54,21 @@ function Rules() {
 		[],
 	);
 
-	useEffect(() => {
+	const oathValidate = () => {
 		if (normalize(answerOath) === normalize(requiredOath)) {
 			setValidOath(true);
+			setErrorOath("");
+		} else {
+			setValidOath(false);
+			setErrorOath(
+				"Pense à regarder de nouveau Harry Potter ... Un indice t'attend juste en dessous",
+			);
 		}
-	}, [answerOath, normalize]);
+	};
+
+	const handleShowClue = () => {
+		setShowClue(true);
+	};
 
 	useEffect(() => {
 		if (!validOath) return;
@@ -76,12 +81,12 @@ function Rules() {
 				clearInterval(interval);
 				setGameButton(true); // ton bouton apparaît après
 			}
-		}, 20); // vitesse d’écriture
+		}, 10); // vitesse d’écriture
 	}, [validOath]);
 
 	return (
-		<div className="marauder-open-container">
-			<div className="marauder-open-map">
+		<main className="marauder-open-container">
+			<section className="marauder-open-map">
 				<img
 					src={marauderMapGauche}
 					alt="cote gauche de la carte"
@@ -93,7 +98,7 @@ function Rules() {
 					className="map-right-half"
 				/>
 				{showParchment && (
-					<div
+					<article
 						className={`parchment-container ${validOath ? "magic-glow" : ""}`}
 					>
 						<img
@@ -113,15 +118,40 @@ function Rules() {
 											setErrorOath("");
 										}}
 									/>
+									<button
+										className="button-reset"
+										type="button"
+										title="Valide le serment"
+										onClick={oathValidate}
+									>
+										<img
+											src={validationSerment}
+											alt="validation serment"
+											className="validation-image"
+										/>
+									</button>
 									<p className={`error-msg ${errorOath ? "visible" : ""}`}>
 										{errorOath}
 									</p>
+									<div className="crystal-section">
+										<button
+											className="button-reset"
+											type="button"
+											title="Affiche un indice"
+											onClick={handleShowClue}
+										>
+											<img src={indice} alt="indice" className="clue-image" />
+										</button>
+										<p className={`error-msg ${showClue ? "visible" : ""}`}>
+											{requiredOath}
+										</p>
+									</div>
 								</>
 							)}
 							{validOath && (
-								<div className="rules-container">
+								<section className="rules-container">
 									<div className="rules-scroll">
-										<div className="magic-text">{displayedText}</div>
+										<p className="magic-text">{displayedText}</p>
 									</div>
 									{gameButton && (
 										<button
@@ -133,13 +163,13 @@ function Rules() {
 											A toi de jouer, sorcier !
 										</button>
 									)}
-								</div>
+								</section>
 							)}
 						</div>
-					</div>
+					</article>
 				)}
-			</div>
-		</div>
+			</section>
+		</main>
 	);
 }
 export default Rules;

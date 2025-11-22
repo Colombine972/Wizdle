@@ -156,6 +156,12 @@
 			transform: translateX(120px);
 		}
 	}
+
+	.crystal-section {
+		display: flex;
+		justify-content: center;
+		align-items: flex-start;
+	}
 }
 /* ================================================*/
 
@@ -246,9 +252,10 @@
 	}
 }
 
+/* MESSAGE D'ERREUR / INDICE */
 .error-msg {
 	min-height: 40px; /*réserve un espace fixe */
-	font-size: 1rem;
+	font-size: var(--font-size-M);
 	text-align: center;
 	margin: 0;
 	color: #7a0000;
@@ -261,32 +268,22 @@
 	opacity: 1; /* visible quand erreur */
 }
 
-/*@keyframes revealDown {
-	from {
-		height: 0;
-	}
-	to {
-		height: 100%; /* le texte descend entièrement *
-	}
-}*/
-/*.magic-text::after {
-	content: "";
+/*===========================================*/
+
+.validation-image {
 	position: absolute;
-	left: 0;
-	top: 0;
-	width: 6px;
-	height: 1.2rem;
-	background: gold;
-	animation: blinkCursor 0.7s infinite;
-	animation-delay: 2s;
+	bottom: 180px; /* permet de mettre le boutton en visuel par dessus le textarea*/
+	right: 10px;
+	width: 28px;
 }
 
-@keyframes blinkCursor {
-	0%,
-	100% {
-		opacity: 0;
-	}
-	50% {
-		opacity: 1;
-	}
-}*/
+.crystal-section {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.clue-image {
+	width: 40px;
+	padding: 0;
+}
