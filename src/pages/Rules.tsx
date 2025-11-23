@@ -44,15 +44,13 @@ function Rules() {
 		setTimeout(() => setShowParchment(true), 1200);
 	}, []);
 
-	const normalize = useCallback(
-		(text: string) =>
-			text
-				.normalize("NFD")
-				.replace(/\p{Diacritic}/gu, "")
-				.replace(/[.,!?;:'"]/g, "")
-				.toLowerCase(),
-		[],
-	);
+	const normalize = useCallback((text: string) => {
+		return text
+			.normalize("NFD")
+			.replace(/\p{Diacritic}/gu, "")
+			.replace(/[.,!?;:'"]/g, "")
+			.toLowerCase();
+	}, []);
 
 	const oathValidate = () => {
 		if (normalize(answerOath) === normalize(requiredOath)) {
@@ -71,17 +69,17 @@ function Rules() {
 	};
 
 	useEffect(() => {
-		if (!validOath) return;
-
-		let i = 0;
-		const interval = setInterval(() => {
-			setDisplayedText(fullText.slice(0, i));
-			i++;
-			if (i > fullText.length) {
-				clearInterval(interval);
-				setGameButton(true); // ton bouton apparaît après
-			}
-		}, 10); // vitesse d’écriture
+		if (validOath) {
+			let i = 0;
+			const interval = setInterval(() => {
+				setDisplayedText(fullText.slice(0, i));
+				i++;
+				if (i > fullText.length) {
+					clearInterval(interval);
+					setGameButton(true);
+				}
+			}, 10);
+		}
 	}, [validOath]);
 
 	return (
