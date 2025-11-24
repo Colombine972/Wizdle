@@ -3,7 +3,7 @@ import Answers from "../components/Answers";
 import Search from "../components/Search";
 import Timer from "../components/Timer";
 import "../styles/Search.css";
-import Clue from "../components/Clue";
+import Clue from "../components/Clue-temp";
 import type { Character } from "../interfaces/interfaces";
 import "../styles/Game.css";
 
