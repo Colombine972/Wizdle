@@ -101,9 +101,7 @@ function Game() {
 			/>
 
 			{victory && (
-				<h1>
-					{usedClue ? "Victoire avec indice !!!!!!!!" : "Victoire !!!!!!!!"}
-				</h1>
+				<h1>{usedClue ? "Victoire avec indice !!!!" : "Victoire !!!!!!!!"}</h1>
 			)}
 		</>
 	);
