@@ -2,16 +2,16 @@ import { useState } from "react";
 import type { Character } from "../interfaces/interfaces";
 
 interface SearchProps {
+	setAttemptCount: React.Dispatch<React.SetStateAction<number>>;
 	setTime: React.Dispatch<React.SetStateAction<number>>;
 	errorApi: string | null;
 	setErrorApi: React.Dispatch<React.SetStateAction<string | null>>;
 	answers: Character[];
 	setAnswers: React.Dispatch<React.SetStateAction<Character[]>>;
-	todayCharacter: Character;
+	todayCharacter: Character | undefined;
 	characters: Character[];
 	setVictory: React.Dispatch<React.SetStateAction<boolean>>;
 }
-
 function Search({
 	errorApi,
 	setErrorApi,
@@ -20,6 +20,7 @@ function Search({
 	todayCharacter,
 	characters,
 	setVictory,
+	setAttemptCount,
 	setTime,
 }: SearchProps) {
 	const [guess, setGuess] = useState("");
@@ -82,6 +83,7 @@ function Search({
 	const selectCharacter = (character: Character) => {
 		setGuess("");
 		setListCharacter([]);
+		setAttemptCount((prev) => prev + 1);
 		start();
 		setAnswers((prev) => [character, ...prev]);
 		victory(character);

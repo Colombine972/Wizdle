@@ -1,4 +1,4 @@
-import "../styles/VisualisationTable.css";
+import "../styles/answers.css";
 import type { Character } from "../interfaces/interfaces";
 
 interface AnswersProps {

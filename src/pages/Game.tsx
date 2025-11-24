@@ -3,6 +3,7 @@ import Answers from "../components/Answers";
 import Search from "../components/Search";
 import Timer from "../components/Timer";
 import "../styles/Search.css";
+import Clue from "../components/Clue";
 import type { Character } from "../interfaces/interfaces";
 import "../styles/Game.css";
 
@@ -11,7 +12,9 @@ function Game() {
 	const [victory, setVictory] = useState(false);
 	const [characters, setCharacters] = useState<Character[]>([]);
 	const [errorApi, setErrorApi] = useState<string | null>(null);
+	const [attemptCount, setAttemptCount] = useState(0);
 	const [time, setTime] = useState(0);
+	const [usedClue, setUsedClue] = useState(false);
 
 	const today = new Date().toISOString().split("T")[0];
 
@@ -41,6 +44,8 @@ function Game() {
 		array: Character[],
 		baseSeed = 11092025,
 	) {
+		if (array.length === 0) return undefined;
+
 		const totalDays = dayFromBegin(date);
 		const cycleLength = array.length;
 		const cycleNumber = Math.floor(totalDays / cycleLength);
@@ -50,7 +55,8 @@ function Game() {
 		return shuffledCharacters[index];
 	}
 
-	const todayCharacter = getCharacterOfDate(today, characters);
+	const todayCharacter =
+		characters.length > 0 ? getCharacterOfDate(today, characters) : undefined;
 
 	useEffect(() => {
 		fetch("https://test-api-5zsf.onrender.com/harry_potter")
@@ -68,7 +74,11 @@ function Game() {
 					<Timer time={time} />
 				</article>
 				<article>
-					<p>Clues</p>
+					<Clue
+						attemptCount={attemptCount}
+						todayCharacter={todayCharacter}
+						setUsedClue={setUsedClue}
+					/>
 				</article>
 			</section>
 			{!victory && (
@@ -81,6 +91,7 @@ function Game() {
 					answers={answers}
 					setVictory={setVictory}
 					todayCharacter={todayCharacter}
+					setAttemptCount={setAttemptCount}
 				/>
 			)}
 			<Answers
@@ -89,7 +100,9 @@ function Game() {
 				todayCharacter={todayCharacter}
 			/>
 
-			{victory && <h1>Victoire !!!!!!!!</h1>}
+			{victory && (
+				<h1>{usedClue ? "Victoire avec indice !!!!" : "Victoire !!!!!!!!"}</h1>
+			)}
 		</>
 	);
 }
