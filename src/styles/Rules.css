@@ -92,7 +92,7 @@
 	flex-direction: column; /* textarea AU-DESSUS du bouton */
 	align-items: center;
 	max-height: 80%;
-	overflow: visible;
+	/*overflow: visible;*/
 }
 
 .parchment-textarea {
@@ -279,12 +279,14 @@
 
 .crystal-section {
 	display: flex;
-	justify-content: center;
+	justify-content: column;
 	align-items: center;
+	justify-content: center;
 }
 
 .clue-image {
 	width: 40px;
+	height: auto;
 	padding: 0;
 }
 

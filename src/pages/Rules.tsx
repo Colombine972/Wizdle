@@ -58,6 +58,7 @@ function Rules() {
 			setErrorOath("");
 		} else {
 			setValidOath(false);
+			setAnswerOath("");
 			setErrorOath(
 				"Pense à regarder de nouveau Harry Potter ... Un indice t'attend juste en dessous",
 			);
