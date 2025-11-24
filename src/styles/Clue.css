@@ -1,0 +1,43 @@
+.boule-disabled {
+	opacity: 0.3;
+	filter: grayscale(100%);
+}
+
+.boule-enabled {
+	opacity: 1;
+	filter: none;
+	cursor: pointer;
+}
+.clue-button {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	gap: 8px;
+	width: 100%;
+	border: 3px solid;
+	border-radius: 8px;
+	padding: 10px 0px;
+	font-size: var(--font-size-L);
+	color: rgb(244, 253, 253);
+	background: var(--background-all-90);
+	border-image: var(--border-color-first) 1;
+	font-family: var(--font-text);
+	height: 8.3rem;
+}
+.clue-button img {
+	width: 3rem;
+}
+.clue-container {
+	padding: 10px;
+	font-size: var(--font-size-M);
+	text-align: center;
+	color: antiquewhite;
+	background: var(--background-all-50);
+}
+@media screen and (min-width: 700px) {
+	.clue-button {
+		flex-direction: row;
+		height: 5.7rem;
+	}
+}
