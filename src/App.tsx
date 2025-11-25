@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router";
+import { Outlet } from "react-router";
 import "./styles/reset.css";
 import "./styles/variable.css";
 import "./styles/App.css";
@@ -7,12 +7,25 @@ import Header from "./components/Header";
 function App() {
 	return (
 		<div className="background">
-			<nav>
-				<Link to="/">Home</Link>
-				<Link to="/rules">Rules</Link>
-				<Link to="/game">Game</Link>
-				<Header />
-			</nav>
+			<aside>
+				<figure>
+					<audio controls>
+						<source
+							src="./src/assets/media/harry-potter-generique.mp3"
+							type="audio/mpeg"
+						/>
+						<track
+							src="./src/assets/media/harry-potter-generique.vtt"
+							kind="captions"
+							srcLang="fr"
+							label="Transcription audio"
+						/>
+						Votre navigateur ne supporte pas la balise audio.
+					</audio>
+					<figcaption>Génerique Harry Potter</figcaption>
+				</figure>
+			</aside>
+			<Header />
 			<main>
 				<Outlet />
 			</main>
