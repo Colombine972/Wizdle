@@ -30,10 +30,7 @@ function Home() {
 				</Link>
 				<Link to="/training">
 					<button type="button">
-						<img
-							src="./src/assets/images/baguette-magique.png"
-							alt="baguette magique"
-						/>
+						<img src="./src/assets/images/logo-vif-dor.png" alt="vif d'or" />
 						Révises tes BUSE
 					</button>
 				</Link>
