@@ -6,6 +6,7 @@ import "../styles/Search.css";
 import Clue from "../components/Clue";
 import type { Character } from "../interfaces/interfaces";
 import "../styles/Game.css";
+import { useClue } from "../utils/ClueContext";
 
 function Training() {
 	const [answers, setAnswers] = useState<Character[]>([]);
@@ -18,6 +19,8 @@ function Training() {
 	const [randomCharacter, setRandomCharacter] = useState<
 		Character | undefined
 	>();
+
+	const { setClueVisible } = useClue();
 
 	useEffect(() => {
 		fetch("https://test-api-5zsf.onrender.com/harry_potter")
@@ -39,6 +42,7 @@ function Training() {
 		setAttemptCount(0);
 		setAnswers([]);
 		setVictory(false);
+		setClueVisible(false);
 		const randomNumber = Math.floor(Math.random() * characters.length);
 		setRandomCharacter(characters[randomNumber]);
 	}
@@ -80,7 +84,7 @@ function Training() {
 				<h1>{usedClue ? "Victoire avec indice !!!!" : "Victoire !!!!!!!!"}</h1>
 			)}
 
-			<button type="button" onClick={newGame}>
+			<button type="button" onClick={newGame} className="randomizer">
 				{" "}
 				Nouvelle partie ?{" "}
 			</button>
