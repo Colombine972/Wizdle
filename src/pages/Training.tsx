@@ -6,6 +6,7 @@ import "../styles/Search.css";
 import Clue from "../components/Clue";
 import type { Character } from "../interfaces/interfaces";
 import "../styles/Game.css";
+import "../styles/Training.css";
 import { useClue } from "../utils/ClueContext";
 
 function Training() {

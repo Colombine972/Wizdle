@@ -105,8 +105,6 @@ section table thead tr th:nth-child(1) {
 }
 
 .table-container {
-	max-height: 600px;
-	overflow-y: auto;
 	margin: 2rem auto;
 	border-radius: 12px;
 }
