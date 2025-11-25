@@ -54,7 +54,7 @@ function Score({
 				</div>
 				<div>
 					<p>
-						Indice utilisé :<span>{usedClue}</span>
+						Indice utilisé :<span>{usedClue ? "oui" : "non"}</span>
 					</p>
 					<p>
 						Tentatives :<span>{attemptCount}</span>

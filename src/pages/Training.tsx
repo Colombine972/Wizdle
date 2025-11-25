@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import Answers from "../components/Answers";
+import Clue from "../components/Clue";
+import Score from "../components/Score";
 import Search from "../components/Search";
 import Timer from "../components/Timer";
-import "../styles/Search.css";
-import Clue from "../components/Clue";
 import type { Character } from "../interfaces/interfaces";
-import "../styles/Game.css";
-import "../styles/Training.css";
 import { useClue } from "../utils/ClueContext";
+import "../styles/Game.css";
+import "../styles/Search.css";
+import "../styles/Training.css";
 
 function Training() {
 	const [answers, setAnswers] = useState<Character[]>([]);
@@ -17,6 +18,7 @@ function Training() {
 	const [attemptCount, setAttemptCount] = useState(0);
 	const [time, setTime] = useState(0);
 	const [usedClue, setUsedClue] = useState(false);
+	const [scoreView, setScoreView] = useState(false);
 	const [randomCharacter, setRandomCharacter] = useState<
 		Character | undefined
 	>();
@@ -73,6 +75,7 @@ function Training() {
 					setVictory={setVictory}
 					todayCharacter={randomCharacter}
 					setAttemptCount={setAttemptCount}
+					setScoreView={setScoreView}
 				/>
 			)}
 			<Answers
@@ -81,8 +84,16 @@ function Training() {
 				todayCharacter={randomCharacter}
 			/>
 
-			{victory && (
-				<h1>{usedClue ? "Victoire avec indice !!!!" : "Victoire !!!!!!!!"}</h1>
+			{victory && scoreView && (
+				<div className="overlay">
+					<Score
+						time={time}
+						usedClue={usedClue}
+						attemptCount={attemptCount}
+						todayCharacter={randomCharacter}
+						setScoreView={setScoreView}
+					/>
+				</div>
 			)}
 
 			<button type="button" onClick={newGame} className="randomizer">
