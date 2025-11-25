@@ -57,6 +57,7 @@ function Search({
 		setGuess(value);
 		setErrorApi(null);
 		setResultNotFound(false);
+		start();
 
 		if (value.trim() === "") {
 			setListCharacter([]);
@@ -89,7 +90,6 @@ function Search({
 		setGuess("");
 		setListCharacter([]);
 		setAttemptCount((prev) => prev + 1);
-		start();
 		setAnswers((prev) => [character, ...prev]);
 		victory(character);
 	};
