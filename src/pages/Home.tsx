@@ -12,20 +12,14 @@ function Home() {
 			<section className="home-section">
 				<Link to="/rules">
 					<button type="button">
-						<img
-							src="./src/assets/images/parchemin-regles.png"
-							alt="parchemin règles"
-						/>
+						<img src="/images/parchemin-regles.png" alt="parchemin règles" />
 						Le Grimoire des Règles
 					</button>
 				</Link>
 				<Link to="/game">
 					<button type="button">
-						<img
-							src="./src/assets/images/baguette-magique.png"
-							alt="baguette magique"
-						/>
-						À toi de jouer, sorcier !
+						<img src="/images/baguette-magique.png" alt="baguette magique" />À
+						toi de jouer, sorcier !
 					</button>
 				</Link>
 			</section>

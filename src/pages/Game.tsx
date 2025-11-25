@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Answers from "../components/Answers";
+import Calendar from "../components/Calendar";
 import Search from "../components/Search";
 import Timer from "../components/Timer";
 import "../styles/Search.css";
@@ -99,6 +100,7 @@ function Game() {
 				characters={characters}
 				todayCharacter={todayCharacter}
 			/>
+			<Calendar />
 
 			{victory && (
 				<h1>{usedClue ? "Victoire avec indice !!!!" : "Victoire !!!!!!!!"}</h1>

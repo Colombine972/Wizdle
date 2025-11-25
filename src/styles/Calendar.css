@@ -1,0 +1,15 @@
+.calendar-button {
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+.arrow {
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+.arrow img {
+	width: 50px;
+}

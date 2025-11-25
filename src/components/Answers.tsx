@@ -35,15 +35,9 @@ function Answers({ answers, characters, todayCharacter }: AnswersProps) {
 										<div className="cell-principal">
 											<span>{character?.nom}</span>
 											{todayCharacter?.nom === character?.nom ? (
-												<img
-													src="./src/assets/images/coche-vert.png"
-													alt="validation"
-												/>
+												<img src="/images/coche-vert.png" alt="validation" />
 											) : (
-												<img
-													src="./src/assets/images/coche-rouge.png"
-													alt="refus"
-												/>
+												<img src="/images/coche-rouge.png" alt="refus" />
 											)}
 										</div>
 									</td>
