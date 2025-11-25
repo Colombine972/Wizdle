@@ -9,7 +9,7 @@ type ScoreProps = {
 	time: number;
 	usedClue: boolean;
 	attemptCount: number;
-	todayCharacter: Character;
+	todayCharacter: Character | undefined;
 	setScoreView: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
@@ -21,21 +21,17 @@ function Score({
 	setScoreView,
 }: ScoreProps) {
 	const timeBis = Number(time) || 0;
-	const timeAfficher = moment.utc(timeBis).format("HH:mm:ss");
+	const displayTime = moment.utc(timeBis).format("HH:mm:ss");
 	const tentativeBis = Number(attemptCount) || 0;
 	const indiceBis = usedClue ? 500 : 0;
 	let score = 10500 - timeBis * 0.1 - tentativeBis * 500 - indiceBis;
+
 	if (score < 0) {
 		score = 0;
 	}
-	const tableauMaison = [
-		"Gryffondor",
-		"Poufsouffle",
-		"Serdaigle",
-		"Serpentard",
-	];
-	const maison =
-		tableauMaison[Math.floor(Math.random() * tableauMaison.length)];
+
+	const tableHouses = ["Gryffondor", "Poufsouffle", "Serdaigle", "Serpentard"];
+	const house = tableHouses[Math.floor(Math.random() * tableHouses.length)];
 
 	return (
 		<section id="popop-score">
@@ -51,10 +47,10 @@ function Score({
 			<article>
 				<h2>MAGISTRAL !</h2>
 				<p>{score} pts</p>
-				<p>pour {maison}</p>
+				<p>pour {house}</p>
 				<div>
 					<img src={imgSablier} alt="Un sablier" />
-					<p>{timeAfficher}</p>
+					<p>{displayTime}</p>
 				</div>
 				<div>
 					<p>
@@ -66,7 +62,7 @@ function Score({
 				</div>
 			</article>
 			<article>
-				<p>Carte : {todayCharacter.nom}</p>
+				<p>Carte : {todayCharacter?.nom}</p>
 				<button type="button" aria-label="Une croix">
 					<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
 						<title>Icône croix</title>

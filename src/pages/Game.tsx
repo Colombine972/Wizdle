@@ -94,6 +94,7 @@ function Game() {
 					setVictory={setVictory}
 					todayCharacter={todayCharacter}
 					setAttemptCount={setAttemptCount}
+					setScoreView={setScoreView}
 				/>
 			)}
 			<Answers

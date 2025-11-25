@@ -80,7 +80,7 @@ function Search({
 			setVictory(true);
 			setTimeout(() => {
 				setScoreView(true);
-			}, 5000);
+			}, 4500);
 			stop();
 		}
 	}
