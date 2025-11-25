@@ -3,6 +3,7 @@ import App from "./App";
 import Game from "./pages/Game";
 import Home from "./pages/Home";
 import Rules from "./pages/Rules";
+import Training from "./pages/Training";
 
 const router = createBrowserRouter([
 	{
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
 			{
 				path: "/game",
 				element: <Game />,
+			},
+			{
+				path: "/training",
+				element: <Training />,
 			},
 		],
 	},

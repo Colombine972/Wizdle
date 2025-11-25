@@ -28,6 +28,15 @@ function Home() {
 						À toi de jouer, sorcier !
 					</button>
 				</Link>
+				<Link to="/training">
+					<button type="button">
+						<img
+							src="./src/assets/images/baguette-magique.png"
+							alt="baguette magique"
+						/>
+						Révises tes BUSE
+					</button>
+				</Link>
 			</section>
 		</>
 	);
