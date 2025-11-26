@@ -13,3 +13,13 @@
 .arrow img {
 	width: 50px;
 }
+
+.calendar-date {
+	color: white;
+}
+.calendar-grid {
+	display: grid;
+	grid-template-columns: repeat(7, 150px);
+	grid-template-rows: repeat(5, 150px);
+	color: antiquewhite;
+}
