@@ -28,6 +28,12 @@ function Home() {
 						À toi de jouer, sorcier !
 					</button>
 				</Link>
+				<Link to="/training">
+					<button type="button">
+						<img src="./src/assets/images/logo-vif-dor.png" alt="vif d'or" />
+						Révises tes BUSE
+					</button>
+				</Link>
 			</section>
 		</>
 	);
