@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router";
 import parcheminClose from "../assets/images/marauder-map-close.jpg";
-import "../styles/MarauderMapClose.css";
+import "../styles/MarauderMapClosed.css";
 
-function MarauderMapClose() {
+function MarauderMapClosed() {
 	const navigate = useNavigate();
 
 	return (
-		<main className="marauder-container">
+		<div className="marauder-container">
 			<button
 				className="button-reset"
 				type="button"
@@ -19,7 +19,7 @@ function MarauderMapClose() {
 					alt="carte du marauder"
 				/>
 			</button>
-		</main>
+		</div>
 	);
 }
-export default MarauderMapClose;
+export default MarauderMapClosed;

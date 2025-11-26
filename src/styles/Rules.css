@@ -92,7 +92,6 @@
 	flex-direction: column; /* textarea AU-DESSUS du bouton */
 	align-items: center;
 	max-height: 80%;
-	/*overflow: visible;*/
 }
 
 .parchment-textarea {
@@ -106,64 +105,6 @@
 	background: rgba(255, 255, 255, 0.85);
 	resize: none;
 }
-
-/* MOBILE : on garde la même logique mais plus petit */
-@media screen and (max-width: 600px) {
-	.marauder-open-map {
-		width: 260px;
-		height: 340px;
-	}
-
-	.parchment-container {
-		position: absolute;
-		width: 93%;
-		height: 340px;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		z-index: 3;
-	}
-
-	.parchment-image {
-		width: 100%;
-		height: 100%;
-	}
-
-	.serment-container {
-		width: 95%;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-	}
-
-	@keyframes openLeft {
-		from {
-			transform: translateX(0);
-		}
-		to {
-			transform: translateX(-120px);
-		}
-	}
-
-	@keyframes openRight {
-		from {
-			transform: translateX(0);
-		}
-		to {
-			transform: translateX(120px);
-		}
-	}
-
-	.crystal-section {
-		display: flex;
-		justify-content: center;
-		align-items: flex-start;
-	}
-}
-/* ================================================*/
 
 .parchment-container.magic-glow {
 	animation: glowSpell 1.8s ease-out forwards;
@@ -191,16 +132,16 @@
 
 .rules-container {
 	/*max-height: 65%;*/
-	width: 90%;
-	overflow: hidden;
+	width: 100%;
+	/*overflow: hidden;*/
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
 
-.rules-scroll {
-	max-height: 65%; /* seulement la zone de texte */
-	overflow-y: auto; /* scroll automatique UNIQUEMENT si dépasse */
+/*.rules-scroll {
+	max-height: 65%; /* seulement la zone de texte *
+	overflow-y: auto; /* scroll automatique UNIQUEMENT si dépasse *
 	width: 100%;
 }
 
@@ -208,24 +149,24 @@
 	display: none !important;
 }*/
 
-.rules-scroll::-webkit-scrollbar {
+/*.rules-scroll::-webkit-scrollbar {
 	width: 6px;
 }
 
 .rules-scroll::-webkit-scrollbar-track {
-	background: rgba(255, 248, 220, 0.2); /* beige parchemin semi-transparent */
+	background: rgba(255, 248, 220, 0.2); /* beige parchemin semi-transparent *
 	border-radius: 10px;
 }
 
 .rules-scroll::-webkit-scrollbar-thumb {
-	background: linear-gradient(180deg, #d7c285, #b99a56); /* doré sombre */
+	background: linear-gradient(180deg, #d7c285, #b99a56); /* doré sombre *
 	border-radius: 10px;
-	border: 1px solid #8b6f3d; /* bordure encre */
+	border: 1px solid #8b6f3d; /* bordure encre *
 }
 
 .rules-scroll::-webkit-scrollbar-thumb:hover {
-	background: linear-gradient(180deg, #e4cfa0, #c2a66a); /* effet survol : plus lumineux */
-}
+	background: linear-gradient(180deg, #e4cfa0, #c2a66a); /* effet survol : plus lumineux *
+}*/
 
 .game-button {
 	opacity: 0;
@@ -301,3 +242,64 @@
 .clue-text.visible {
 	opacity: 1;
 }
+
+/* MOBILE : on garde la même logique mais plus petit */
+@media screen and (max-width: 600px) {
+	.marauder-open-map {
+		width: 260px;
+		height: 340px;
+	}
+
+	.parchment-container {
+		position: absolute;
+		width: 100%;
+		height: 340px;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		z-index: 3;
+	}
+
+	.parchment-image {
+		width: 100%;
+		height: 100%;
+	}
+
+	.serment-container {
+		width: 95%;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	@keyframes openLeft {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(-120px);
+		}
+	}
+
+	@keyframes openRight {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(120px);
+		}
+	}
+
+	.crystal-section {
+		display: flex;
+		justify-content: center;
+		align-items: flex-start;
+	}
+	.game-button {
+		margin-top: 5px;
+	}
+}
+/* ================================================*/
