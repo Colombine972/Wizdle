@@ -66,10 +66,10 @@
 .parchment-container {
 	position: absolute;
 	width: 360px;
-	height: 480px;
+	height: 484px;
+	top: 51%;
 	left: 50%;
-	top: 0;
-	transform: translateX(-50%);
+	transform: translate(-50%, -50.8%);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -92,6 +92,7 @@
 	flex-direction: column; /* textarea AU-DESSUS du bouton */
 	align-items: center;
 	max-height: 80%;
+	min-height: 300px;
 }
 
 .parchment-textarea {
@@ -138,20 +139,6 @@
 	align-items: center;
 }
 
-.game-button {
-	opacity: 0;
-	animation: fadeIn 1.3s forwards ease-out;
-	margin-top: 18px;
-	padding: 10px 18px;
-	font-size: var(--font-size-S);
-	background: var(--background-button);
-	color: black;
-	border: 2px solid gold;
-	border-radius: 8px;
-	cursor: pointer;
-	font-family: var(--font-title);
-}
-
 @keyframes fadeIn {
 	from {
 		opacity: 0;
@@ -183,7 +170,7 @@
 
 .validation-image {
 	position: absolute;
-	bottom: 180px; /* permet de mettre le boutton en visuel par dessus le textarea*/
+	bottom: 210px; /* permet de mettre le boutton en visuel par dessus le textarea*/
 	right: 10px;
 	width: 28px;
 }
@@ -213,8 +200,39 @@
 	opacity: 1;
 }
 
+.game-button {
+	opacity: 0;
+	animation: fadeIn 1.3s forwards ease-out;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	padding: 16px;
+	width: 70%;
+	height: 40px;
+	margin: 18px auto;
+	background: var(--background-button);
+	border-radius: 8px;
+	border: none;
+	font-size: var(--font-size-M);
+	font-family: var(--font-title);
+	font-weight: 100;
+}
+
+.game-button:hover {
+	cursor: pointer;
+	scale: 1.04;
+	box-shadow: 0px 0px 10px 4px #ffffff;
+	transition: all .5s;
+}
+
+.game-button img {
+	width: 20px;
+	height: 20px;
+}
+
 /* MOBILE : on garde la même logique mais plus petit */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
 	.marauder-open-map {
 		width: 260px;
 		height: 340px;
@@ -235,7 +253,10 @@
 
 	.parchment-image {
 		width: 100%;
-		height: 100%;
+		height: 101%;
+		transform: translateY(-49.8%);
+		position: absolute;
+		top: 50%;
 	}
 
 	.serment-container {
@@ -266,7 +287,7 @@
 	.crystal-section {
 		display: flex;
 		justify-content: center;
-		align-items: flex-start;
+		align-items: center;
 	}
 	.game-button {
 		margin-top: 5px;

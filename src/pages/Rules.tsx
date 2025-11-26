@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import baguetteMagique from "../assets/images/baguette-magique.png";
 import indice from "../assets/images/indice.webp";
 import marauderMapDroite from "../assets/images/marauder-map-droite.jpg";
 import marauderMapGauche from "../assets/images/marauder-map-gauche.jpg";
@@ -116,7 +117,9 @@ function Rules() {
 											title="Affiche un indice"
 											onClick={() => setShowClue(true)}
 										>
-											<img src={indice} alt="indice" className="clue-image" />
+											{errorOath && (
+												<img src={indice} alt="indice" className="clue-image" />
+											)}
 										</button>
 										<p className={`error-msg ${showClue ? "visible" : ""}`}>
 											{requiredOath}
@@ -135,7 +138,8 @@ function Rules() {
 										onClick={() => navigate("/game")}
 										className="game-button"
 									>
-										A toi de jouer, sorcier !
+										<img src={baguetteMagique} alt="baguette magique" />A toi de
+										jouer, sorcier !
 									</button>
 								</div>
 							)}
