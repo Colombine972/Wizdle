@@ -1,17 +1,17 @@
 /* PAGE DE BASE */
 .marauder-open-container {
-	min-height: 100vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	position: relative;
 	padding: 0;
 	background: transparent;
+	padding: 20px 0;
 }
 
 .marauder-open-map {
 	width: 360px; /* largeur finale souhaitée */
-	height: 500px; /* hauteur pour tous les elements */
+	height: 480px; /* hauteur pour tous les elements */
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -66,7 +66,7 @@
 .parchment-container {
 	position: absolute;
 	width: 360px;
-	height: 100%;
+	height: 480px;
 	left: 50%;
 	top: 0;
 	transform: translateX(-50%);
@@ -76,7 +76,7 @@
 }
 
 .parchment-image {
-	height: 500px; /* même hauteur que les pages */
+	height: 100%; /* même hauteur que les pages */
 	width: 100%;
 	object-fit: cover;
 }
@@ -99,6 +99,7 @@
 	min-height: 100px;
 	padding: 10px;
 	font-size: 1rem;
+	font-family: var(--font-text);
 	text-align: center;
 	border-radius: 6px;
 	border: 3px solid #7a5b2f;
@@ -131,42 +132,11 @@
 }
 
 .rules-container {
-	/*max-height: 65%;*/
 	width: 100%;
-	/*overflow: hidden;*/
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
-
-/*.rules-scroll {
-	max-height: 65%; /* seulement la zone de texte *
-	overflow-y: auto; /* scroll automatique UNIQUEMENT si dépasse *
-	width: 100%;
-}
-
-/*.rules-scroll::-webkit-scrollbar {
-	display: none !important;
-}*/
-
-/*.rules-scroll::-webkit-scrollbar {
-	width: 6px;
-}
-
-.rules-scroll::-webkit-scrollbar-track {
-	background: rgba(255, 248, 220, 0.2); /* beige parchemin semi-transparent *
-	border-radius: 10px;
-}
-
-.rules-scroll::-webkit-scrollbar-thumb {
-	background: linear-gradient(180deg, #d7c285, #b99a56); /* doré sombre *
-	border-radius: 10px;
-	border: 1px solid #8b6f3d; /* bordure encre *
-}
-
-.rules-scroll::-webkit-scrollbar-thumb:hover {
-	background: linear-gradient(180deg, #e4cfa0, #c2a66a); /* effet survol : plus lumineux *
-}*/
 
 .game-button {
 	opacity: 0;
