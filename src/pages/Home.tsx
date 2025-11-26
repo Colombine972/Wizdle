@@ -10,7 +10,7 @@ function Home() {
 				sauras-tu percer ses mystères ?
 			</h1>
 			<section className="home-section">
-				<Link to="/rules">
+				<Link to="/marauder-map">
 					<button type="button">
 						<img src="/images/parchemin-regles.png" alt="parchemin règles" />
 						Le Grimoire des Règles

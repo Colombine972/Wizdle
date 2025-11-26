@@ -1,0 +1,22 @@
+/* containeur button et image*/
+.marauder-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+}
+
+/* bouton sans style*/
+.button-reset {
+	background: none;
+	border: none;
+	padding: 20px 0;
+	cursor: pointer;
+}
+
+/* image du marauder*/
+.marauder-map {
+	width: 360px;
+	height: auto;
+	display: block;
+}
