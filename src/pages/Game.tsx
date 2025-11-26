@@ -5,6 +5,8 @@ import Timer from "../components/Timer";
 import "../styles/Search.css";
 import type { Character } from "../interfaces/interfaces";
 import "../styles/Game.css";
+import DailyRanking from "../components/DailyRanking";
+import otherPlayers from "../otherPlayers.json";
 
 function Game() {
 	const [answers, setAnswers] = useState<Character[]>([]);
@@ -14,6 +16,7 @@ function Game() {
 	const [time, setTime] = useState(0);
 
 	const today = new Date().toISOString().split("T")[0];
+	const fakeCurrentPlayer = { id: "6", name: "Bob", score: 5868 };
 
 	function dayFromBegin(date: string, beginning = "2025-11-18") {
 		const today = new Date(date);
@@ -89,7 +92,12 @@ function Game() {
 				todayCharacter={todayCharacter}
 			/>
 
-			{victory && <h1>Victoire !!!!!!!!</h1>}
+			{victory && (
+				<DailyRanking
+					otherPlayers={otherPlayers}
+					fakeCurrentPlayer={fakeCurrentPlayer}
+				/>
+			)}
 		</>
 	);
 }
