@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import Answers from "../components/Answers";
+import Clue from "../components/Clue";
+import Score from "../components/Score";
 import Search from "../components/Search";
 import Timer from "../components/Timer";
-import "../styles/Search.css";
-import Clue from "../components/Clue";
 import type { Character } from "../interfaces/interfaces";
+import { useClue } from "../utils/ClueContext";
 import "../styles/Game.css";
-import Score from "../components/Score";
+import "../styles/Search.css";
+import "../styles/Training.css";
 
-function Game() {
+function Training() {
 	const [answers, setAnswers] = useState<Character[]>([]);
 	const [victory, setVictory] = useState(false);
 	const [characters, setCharacters] = useState<Character[]>([]);
@@ -17,48 +19,11 @@ function Game() {
 	const [time, setTime] = useState(0);
 	const [usedClue, setUsedClue] = useState(false);
 	const [scoreView, setScoreView] = useState(false);
+	const [randomCharacter, setRandomCharacter] = useState<
+		Character | undefined
+	>();
 
-	const today = new Date().toISOString().split("T")[0];
-
-	function dayFromBegin(date: string, beginning = "2025-11-18") {
-		const today = new Date(date);
-		const beginningDate = new Date(beginning);
-		const difference = today.getTime() - beginningDate.getTime();
-		return Math.floor(difference / (1000 * 60 * 60 * 24));
-	}
-
-	function seededRandom(seed: number) {
-		const x = Math.sin(seed) * 10000;
-		return x - Math.floor(x);
-	}
-
-	function seededShuffle<T>(array: T[], seed: number): T[] {
-		const arr = [...array];
-		for (let i = arr.length - 1; i > 0; i--) {
-			const j = Math.floor(seededRandom(seed + i) * (i + 1));
-			[arr[i], arr[j]] = [arr[j], arr[i]];
-		}
-		return arr;
-	}
-
-	function getCharacterOfDate(
-		date: string,
-		array: Character[],
-		baseSeed = 11092025,
-	) {
-		if (array.length === 0) return undefined;
-
-		const totalDays = dayFromBegin(date);
-		const cycleLength = array.length;
-		const cycleNumber = Math.floor(totalDays / cycleLength);
-		const index = totalDays % cycleLength;
-		const cycleSeed = baseSeed + cycleNumber;
-		const shuffledCharacters = seededShuffle(array, cycleSeed);
-		return shuffledCharacters[index];
-	}
-
-	const todayCharacter =
-		characters.length > 0 ? getCharacterOfDate(today, characters) : undefined;
+	const { setClueVisible } = useClue();
 
 	useEffect(() => {
 		fetch("https://test-api-5zsf.onrender.com/harry_potter")
@@ -69,6 +34,22 @@ function Game() {
 			.catch(() => setErrorApi("Les personnages ont disparu 😲"));
 	}, []);
 
+	useEffect(() => {
+		const randomNumber = Math.floor(Math.random() * characters.length);
+		setRandomCharacter(characters[randomNumber]);
+	}, [characters]);
+
+	function newGame() {
+		setTime(0);
+		setUsedClue(false);
+		setAttemptCount(0);
+		setAnswers([]);
+		setVictory(false);
+		setClueVisible(false);
+		const randomNumber = Math.floor(Math.random() * characters.length);
+		setRandomCharacter(characters[randomNumber]);
+	}
+
 	return (
 		<>
 			<section className="timer-clue">
@@ -78,7 +59,7 @@ function Game() {
 				<article>
 					<Clue
 						attemptCount={attemptCount}
-						todayCharacter={todayCharacter}
+						todayCharacter={randomCharacter}
 						setUsedClue={setUsedClue}
 					/>
 				</article>
@@ -92,7 +73,7 @@ function Game() {
 					setErrorApi={setErrorApi}
 					answers={answers}
 					setVictory={setVictory}
-					todayCharacter={todayCharacter}
+					todayCharacter={randomCharacter}
 					setAttemptCount={setAttemptCount}
 					setScoreView={setScoreView}
 				/>
@@ -100,7 +81,7 @@ function Game() {
 			<Answers
 				answers={answers}
 				characters={characters}
-				todayCharacter={todayCharacter}
+				todayCharacter={randomCharacter}
 			/>
 
 			{victory && scoreView && (
@@ -109,12 +90,18 @@ function Game() {
 						time={time}
 						usedClue={usedClue}
 						attemptCount={attemptCount}
-						todayCharacter={todayCharacter}
+						todayCharacter={randomCharacter}
 						setScoreView={setScoreView}
 					/>
 				</div>
 			)}
+
+			<button type="button" onClick={newGame} className="randomizer">
+				<img src="./src/assets/images/logo-vif-dor.png" alt="vif d'or" />
+				Nouvelle partie ?
+			</button>
 		</>
 	);
 }
-export default Game;
+
+export default Training;

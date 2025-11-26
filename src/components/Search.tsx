@@ -2,16 +2,17 @@ import { useState } from "react";
 import type { Character } from "../interfaces/interfaces";
 
 interface SearchProps {
+	setAttemptCount: React.Dispatch<React.SetStateAction<number>>;
 	setTime: React.Dispatch<React.SetStateAction<number>>;
 	errorApi: string | null;
 	setErrorApi: React.Dispatch<React.SetStateAction<string | null>>;
 	answers: Character[];
 	setAnswers: React.Dispatch<React.SetStateAction<Character[]>>;
-	todayCharacter: Character;
+	todayCharacter: Character | undefined;
 	characters: Character[];
 	setVictory: React.Dispatch<React.SetStateAction<boolean>>;
+	setScoreView: React.Dispatch<React.SetStateAction<boolean>>;
 }
-
 function Search({
 	errorApi,
 	setErrorApi,
@@ -20,7 +21,9 @@ function Search({
 	todayCharacter,
 	characters,
 	setVictory,
+	setAttemptCount,
 	setTime,
+	setScoreView,
 }: SearchProps) {
 	const [guess, setGuess] = useState("");
 	const [listCharacter, setListCharacter] = useState<Character[]>([]);
@@ -54,6 +57,7 @@ function Search({
 		setGuess(value);
 		setErrorApi(null);
 		setResultNotFound(false);
+		start();
 
 		if (value.trim() === "") {
 			setListCharacter([]);
@@ -75,6 +79,9 @@ function Search({
 		if (!character || !characters) return;
 		if (character.id === todayCharacter?.id) {
 			setVictory(true);
+			setTimeout(() => {
+				setScoreView(true);
+			}, 4500);
 			stop();
 		}
 	}
@@ -82,7 +89,7 @@ function Search({
 	const selectCharacter = (character: Character) => {
 		setGuess("");
 		setListCharacter([]);
-		start();
+		setAttemptCount((prev) => prev + 1);
 		setAnswers((prev) => [character, ...prev]);
 		victory(character);
 	};
