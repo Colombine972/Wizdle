@@ -1,6 +1,6 @@
-import { useState } from "react";
 import "../styles/clue.css";
 import type { Character } from "../interfaces/interfaces";
+import { useClue } from "../utils/ClueContext";
 
 interface ClueProps {
 	attemptCount: number;
@@ -11,7 +11,8 @@ interface ClueProps {
 function Clue({ attemptCount, todayCharacter, setUsedClue }: ClueProps) {
 	const isDisabled = attemptCount < 5;
 	const remainingAttempts = 5 - attemptCount;
-	const [clueVisible, setClueVisible] = useState(false);
+
+	const { clueVisible, setClueVisible } = useClue();
 
 	function clueClick() {
 		if (!isDisabled) {
