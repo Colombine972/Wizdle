@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import baguetteMagique from "/images/baguette-magique.png";
 import indice from "/images/indice.webp";
 import marauderMapDroite from "/images/marauder-map-droite.jpg";
 import marauderMapGauche from "/images/marauder-map-gauche.jpg";
 import parcheminVide from "/images/parchemin-vide.webp";
 import validationSerment from "/images/validation-serment.png";
-import baguetteMagique from "../assets/images/baguette-magique.png";
 import "../styles/Rules.css";
 
 const fullText = `🪄 Règles du jeu – 

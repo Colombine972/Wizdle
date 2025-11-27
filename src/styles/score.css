@@ -18,7 +18,7 @@
 	justify-content: center;
 	align-items: center;
 	gap: 2vh;
-	background-image: url("../images/carte-chateau.png");
+	background-image: url("/images/carte-chateau.png");
 	background-size: auto 100%; /* image prend 100% de la hauteur */
 	background-position: center;
 	background-repeat: no-repeat;

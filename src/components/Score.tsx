@@ -1,8 +1,8 @@
 import moment from "moment";
 import "../styles/score.css";
 import "../styles/scoreResponsive.css";
-import imgCoix from "../images/croix.svg";
-import imgSablier from "../images/sablier.svg";
+import imgCoix from "/images/croix.svg";
+import imgSablier from "/images/sablier.svg";
 import type { Character } from "../interfaces/interfaces";
 
 type ScoreProps = {
