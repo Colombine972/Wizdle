@@ -3,7 +3,15 @@
 	border: none;
 	cursor: pointer;
 }
-
+.popup-calendar {
+	background-image: url(/images/carte-du-marauder.png);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
 .arrow {
 	background: none;
 	border: none;
@@ -19,7 +27,43 @@
 }
 .calendar-grid {
 	display: grid;
-	grid-template-columns: repeat(7, 150px);
-	grid-template-rows: repeat(5, 150px);
-	color: antiquewhite;
+	grid-template-columns: repeat(7, 75px);
+	grid-template-rows: repeat(6, 75px);
+	justify-content: center;
+	font-family: var(--font-title);
+	border-collapse: collapse;
+	gap: 1.5px;
+}
+.day-row {
+	display: flex;
+	justify-content: center;
+	align-items: end;
+	font-weight: bold;
+}
+.box {
+	border: 1.5px solid black;
+	display: flex;
+	justify-content: end;
+	align-items: end;
+	padding: 5px;
+}
+.box:hover {
+	transform: scale(1.03);
+	cursor: pointer;
+	box-shadow: rgba(200, 170, 72, 1) 0px 0px 10px;
+}
+.calendar-header {
+	display: flex;
+	justify-content: space-evenly;
+}
+.button-close {
+	background: none;
+	border: none;
+	cursor: pointer;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+.button-close img {
+	width: 30px;
 }

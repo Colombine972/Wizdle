@@ -18,6 +18,7 @@ function Game() {
 	const [time, setTime] = useState(0);
 	const [usedClue, setUsedClue] = useState(false);
 	const [scoreView, setScoreView] = useState(false);
+	const [openCalendar, setOpenCalendar] = useState(false);
 
 	const today = new Date().toISOString().split("T")[0];
 
@@ -103,7 +104,7 @@ function Game() {
 				characters={characters}
 				todayCharacter={todayCharacter}
 			/>
-			<Calendar />
+			<Calendar setOpenCalendar={setOpenCalendar} openCalendar={openCalendar} />
 
 			{victory && scoreView && (
 				<div className="overlay">
