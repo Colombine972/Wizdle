@@ -1,9 +1,19 @@
 import moment from "moment";
 import "../styles/score.css";
 import "../styles/scoreResponsive.css";
+import { useMemo, useState } from "react";
+import banner from "../assets/images/banniere.png";
 import imgCoix from "../images/croix.svg";
 import imgSablier from "../images/sablier.svg";
 import type { Character } from "../interfaces/interfaces";
+
+import otherPlayers from "../otherPlayers.json";
+
+type Player = {
+	id: string;
+	name: string;
+	score: number;
+};
 
 type ScoreProps = {
 	time: number;
@@ -11,14 +21,29 @@ type ScoreProps = {
 	attemptCount: number;
 	todayCharacter: Character | undefined;
 	setScoreView: React.Dispatch<React.SetStateAction<boolean>>;
+	fakeCurrentPlayer: Player;
 };
 
-function Score({
+const tableHouses = ["Gryffondor", "Poufsouffle", "Serdaigle", "Serpentard"];
+const house = tableHouses[Math.floor(Math.random() * tableHouses.length)];
+
+const rankLabels = [
+	"🥇Première place :",
+	"🥈Deuxième place :",
+	"🥉Troisième place :",
+	"  Quatrième place :",
+	"  Cinquième place :",
+];
+
+const [open, setOpen] = useState(false);
+
+export default function Score({
 	time,
 	usedClue,
 	attemptCount,
 	todayCharacter,
 	setScoreView,
+	fakeCurrentPlayer, // alert input to create onClick "start button"
 }: ScoreProps) {
 	const timeBis = Number(time) || 0;
 	const displayTime = moment.utc(timeBis).format("HH:mm:ss");
@@ -30,8 +55,11 @@ function Score({
 		score = 0;
 	}
 
-	const tableHouses = ["Gryffondor", "Poufsouffle", "Serdaigle", "Serpentard"];
-	const house = tableHouses[Math.floor(Math.random() * tableHouses.length)];
+	const sortedRanking = useMemo(
+		() =>
+			[...otherPlayers, fakeCurrentPlayer].sort((a, b) => b.score - a.score),
+		[fakeCurrentPlayer],
+	);
 
 	return (
 		<section id="popop-score">
@@ -61,33 +89,104 @@ function Score({
 					</p>
 				</div>
 			</article>
-			<article>
-				<p>Carte : {todayCharacter?.nom}</p>
-				<button type="button" aria-label="Une croix">
-					<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-						<title>Icône croix</title>
-						<line
-							x1="50"
-							y1="20"
-							x2="50"
-							y2="80"
-							stroke="white"
-							strokeWidth="10"
-							strokeLinecap="round"
-						/>
-						<line
-							x1="20"
-							y1="50"
-							x2="80"
-							y2="50"
-							stroke="white"
-							strokeWidth="10"
-							strokeLinecap="round"
-						/>
-					</svg>
-				</button>
-			</article>
+			{todayCharacter && (
+				<article>
+					<div className="character-card-header">
+						<h2>{todayCharacter.nom}</h2>
+						<button
+							type="button"
+							className="character-card-button"
+							onClick={() => setOpen((prev) => !prev)}
+						>
+							{open ? "-" : "+"}
+						</button>
+					</div>
+					{open && (
+						<div className="character-card-body-container">
+							<img src={todayCharacter.image} alt="characterToFind.nom" />
+							<table>
+								<tbody>
+									<tr>
+										<th scope="row" className="align-to-right ">
+											espece :
+										</th>
+										<td>{todayCharacter.espece || "inconnue"}</td>
+									</tr>
+									<tr>
+										<th scope="row" className="align-to-right ">
+											Genre :
+										</th>
+										<td>{todayCharacter.genre || "inconnu"}</td>
+									</tr>
+									<tr>
+										<th scope="row" className="align-to-right ">
+											Maison :
+										</th>
+										<td>{todayCharacter.maison || "inconnue"}</td>
+									</tr>
+									<tr>
+										<th scope="row" className="align-to-right ">
+											Ascendance :
+										</th>
+										<td>{todayCharacter.ascendance || "inconnue"}</td>
+									</tr>
+									<tr>
+										<th scope="row" className="align-to-right ">
+											En vie :
+										</th>
+										<td>
+											{todayCharacter.vivant === true
+												? "oui"
+												: todayCharacter.vivant === false
+													? "non"
+													: "non défini"}
+										</td>
+									</tr>
+									<tr>
+										<th scope="row" className="align-to-right ">
+											Cheveux :
+										</th>
+										<td>{todayCharacter.couleur_cheveux || "inconnue"}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					)}
+				</article>
+			)}
+			{todayCharacter && (
+				<article>
+					<header>
+						<img src={banner} alt="banniere de victoire" />
+						<button
+							type="button"
+							className="daily-ranking-button"
+							onClick={() => setOpen((prev) => !prev)}
+						>
+							{open ? "-" : "+"}
+						</button>
+					</header>
+					{open && (
+						<table>
+							<caption>CLASSEMENT</caption>
+							<tbody>
+								{rankLabels.map((label, index) => {
+									const player = sortedRanking[index];
+									if (!player) return null;
+									return (
+										<tr key={label}>
+											<th scope="row">{label}</th>
+											<td>
+												{player.name}, {player.score} points
+											</td>
+										</tr>
+									);
+								})}
+							</tbody>
+						</table>
+					)}
+				</article>
+			)}
 		</section>
 	);
 }
-export default Score;

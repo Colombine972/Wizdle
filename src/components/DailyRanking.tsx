@@ -53,7 +53,7 @@ export default function DailyRanking({
 							if (!player) return null;
 							return (
 								<tr key={label}>
-									<th>{label}</th>
+									<th scope="row">{label}</th>
 									<td>
 										{player.name}, {player.score} points
 									</td>
