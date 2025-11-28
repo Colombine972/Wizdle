@@ -1,4 +1,15 @@
-/* overlay (inchangé) */
+@keyframes glowSpell {
+	0% {
+		filter: drop-shadow(0 0 0px gold);
+	}
+	50% {
+		filter: drop-shadow(0 0 25px gold) drop-shadow(0 0 40px goldenrod);
+	}
+	100% {
+		filter: drop-shadow(0 0 8px goldenrod);
+	}
+}
+
 .overlay {
 	position: fixed;
 	inset: 0;
@@ -91,43 +102,46 @@
 	border: 0.25rem solid #5b4c1f;
 	background-color: #e9dbae;
 }
+
 #popop-score article h2 {
 	font-family: var(--font-title);
-	font-size: var(--font-size-XL);
+	font-size: calc(var(--font-size-XXL) * 0.8);
 	background: linear-gradient(
 		90deg,
-		rgba(106, 82, 36, 1) 3%,
-		rgba(155, 117, 53, 1) 13%,
-		rgba(205, 152, 70, 1) 20%,
-		rgba(243, 220, 116, 1) 30%,
-		rgba(254, 242, 148, 1) 40%,
-		rgba(244, 243, 224, 1) 50%,
-		rgba(254, 242, 148, 1) 60%,
-		rgba(243, 220, 116, 1) 70%,
-		rgba(205, 152, 70, 1) 80%,
-		rgba(155, 117, 53, 1) 100%
+		#6a5224 0% /* or brun foncé */,
+		#8a6b35 12% /* or foncé chaud */,
+		#c9a24d 25% /* or moyen */,
+		#f0d97a 40% /* or clair */,
+		#fff3c2 50% /* blanc doré (plus lisible) */,
+		#f0d97a 60% /* retour or clair */,
+		#c9a24d 75% /* or moyen */,
+		#8a6b35 88% /* or foncé */,
+		#6a5224 100% /* or brun foncé */
 	);
-	-webkit-background-clip: text; /* applique le fond au texte */
-	-webkit-text-fill-color: transparent; /* rend la couleur du texte transparente */
+	-webkit-text-stroke: .4px #4a3a15; /* trait plus marqué pour la lecture */
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	animation: glowSpell 1.8s ease-out forwards;
 }
+
 #popop-score p {
-	font-size: var(--font-size-L);
-	font-family: var(--font-text);
-	font-weight: bold;
+	font-size: calc(var(--font-size-XL) * 0.8);
+	font-family: var(--font-title);
 }
+
+/* Premier article */
 #popop-score article:nth-of-type(1) > p:nth-of-type(1) {
 	padding-top: 4%;
+	color: var(--border-color-second);
+	text-shadow: 1px 1px 0 #c8aa48, 1px -1px 0 #c8aa48, -1px 1px 0 #c8aa48, -1px
+		-1px 0 #c8aa48;
 }
+
 #popop-score article:nth-of-type(1) > p:nth-of-type(2) {
 	padding-top: 2%;
-}
-#popop-score article:nth-of-type(1) > p:nth-of-type(1) {
-	color: var(--border-color-second);
-	-webkit-text-stroke: 1px #c8aa48;
-}
-#popop-score article:nth-of-type(1) > p:nth-of-type(2) {
 	color: #6b5b1c;
-	-webkit-text-stroke: 1px #c8aa48;
+	text-shadow: 1px 1px 0 #c8aa48, 1px -1px 0 #c8aa48, -1px 1px 0 #c8aa48, -1px
+		-1px 0 #c8aa48;
 }
 #popop-score article:nth-of-type(1) div:nth-of-type(1) {
 	transform: translateY(-0.5vh);
@@ -182,7 +196,8 @@
 }
 #popop-score article:nth-of-type(2) p {
 	color: var(--border-color-second);
-	-webkit-text-stroke: 1px #c8aa48;
+	text-shadow: .5px .5px 0 #c8aa48, .5px -.5px 0 #c8aa48, -.5px .5px 0 #c8aa48,
+		-.5px -.5px 0 #c8aa48;
 }
 
 @media screen and (min-width: 700px) {

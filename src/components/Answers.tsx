@@ -32,7 +32,13 @@ function Answers({ answers, characters, todayCharacter }: AnswersProps) {
 							answers.map((character: Character) => (
 								<tr key={character.id}>
 									<td>
-										<div className="cell-principal">
+										<div
+											className={
+												todayCharacter?.nom === character?.nom
+													? "cell-principal glowTrue"
+													: "cell-principal glowFalse"
+											}
+										>
 											<span>{character?.nom}</span>
 											{todayCharacter?.nom === character?.nom ? (
 												<img
