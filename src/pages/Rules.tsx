@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import baguetteMagique from "../assets/images/baguette-magique.png";
 import indice from "../assets/images/indice.webp";
 import marauderMapDroite from "../assets/images/marauder-map-droite.jpg";
 import marauderMapGauche from "../assets/images/marauder-map-gauche.jpg";
 import parcheminVide from "../assets/images/parchemin-vide.webp";
 import validationSerment from "../assets/images/validation-serment.png";
 import "../styles/Rules.css";
-import StartGameButton from "../components/StartGameButton";
 
 const fullText = `🪄 Règles du jeu – 
 
@@ -31,6 +32,7 @@ function Rules() {
 	const [errorOath, setErrorOath] = useState("");
 	const [validOath, setValidOath] = useState(false);
 	const [showClue, setShowClue] = useState(false);
+	const navigate = useNavigate();
 	const requiredOath =
 		"je jure solennellement que mes intentions sont mauvaises";
 
@@ -130,7 +132,15 @@ function Rules() {
 									<div className="rules-scroll">
 										<p className="magic-text">{fullText}</p>
 									</div>
-									<StartGameButton />
+									<button
+										type="button"
+										title="accès au jeu"
+										onClick={() => navigate("/game")}
+										className="game-button"
+									>
+										<img src={baguetteMagique} alt="baguette magique" />A toi de
+										jouer, sorcier !
+									</button>
 								</div>
 							)}
 						</div>

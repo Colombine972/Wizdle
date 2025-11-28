@@ -22,7 +22,11 @@ function StartGameButton() {
 
 	return (
 		<>
-			<button type="button" onClick={displayUserInputModal}>
+			<button
+				className="game-button"
+				type="button"
+				onClick={displayUserInputModal}
+			>
 				<img src={baguetteMagique} alt="baguette magique" />À toi de jouer,
 				sorcier(e)!
 			</button>

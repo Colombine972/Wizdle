@@ -1,6 +1,5 @@
 import { Link } from "react-router";
 import "../styles/Home.css";
-import StartGameButton from "../components/StartGameButton";
 
 function Home() {
 	return (
@@ -20,7 +19,15 @@ function Home() {
 						Le Grimoire des Règles
 					</button>
 				</Link>
-				<StartGameButton />
+				<Link to="/game">
+					<button type="button">
+						<img
+							src="./src/assets/images/baguette-magique.png"
+							alt="baguette magique"
+						/>
+						À toi de jouer, sorcier !
+					</button>
+				</Link>
 				<Link to="/training">
 					<button type="button">
 						<img src="./src/assets/images/logo-vif-dor.png" alt="vif d'or" />
