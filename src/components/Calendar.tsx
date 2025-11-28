@@ -54,65 +54,54 @@ function Calendar({ openCalendar, setOpenCalendar }: CalendarProps) {
 		emptyBox.push(i);
 	}
 
-	if (!openCalendar) {
-		return (
-			<button
-				type="button"
-				className="calendar-button"
-				onClick={() => setOpenCalendar(true)}
-			>
-				<img src="/images/calendar.png" alt="Calendar" />
-			</button>
-		);
-	}
 	return (
-		<>
-			{openCalendar && (
-				<section className="popup-calendar">
-					<section className="calendar-header">
-						<button type="button" className="arrow" onClick={goToPreviousMonth}>
-							<img
-								src="/images/fleche-gauche.png"
-								alt="Previous Month"
-								className="arrow"
-							/>
-						</button>
-						<h2 className="calendar-date">{months[month]}</h2>
-						<button type="button" className="arrow" onClick={goToNextMonth}>
-							<img
-								src="/images/fleche-droite.png"
-								alt="Next Month"
-								className="arrow"
-							/>
-						</button>
-						<h2 className="calendar-date">{year}</h2>
-					</section>
-					<section className="calendar-grid">
-						{days.map((day) => (
-							<div className="day-row" key={`weekday-${day}`}>
-								{day}
-							</div>
-						))}
-
-						{emptyBox.map((day) => (
-							<div className="box-empty" key={`empty-${day}`} />
-						))}
-						{allDaysInMonth.map((day) => (
-							<div className="box" key={`day-${day}`}>
-								{day}
-							</div>
-						))}
-					</section>
-					<button
-						type="button"
-						onClick={() => setOpenCalendar(false)}
-						className="button-close"
-					>
-						<img src="/images/croix.svg" alt="fermeture" />
+		<section className="popup-calendar">
+			<section className="calendar-header">
+				<section className="header-arrow">
+					<button type="button" className="arrow" onClick={goToPreviousMonth}>
+						<img
+							src="/images/fleche-gauche.png"
+							alt="Previous Month"
+							className="arrow"
+						/>
+					</button>
+					<button type="button" className="arrow" onClick={goToNextMonth}>
+						<img
+							src="/images/fleche-droite.png"
+							alt="Next Month"
+							className="arrow"
+						/>
 					</button>
 				</section>
-			)}
-		</>
+				<section className="header-date">
+					<h2 className="calendar-date">{months[month]}</h2>
+					<h2 className="calendar-date">{year}</h2>
+				</section>
+			</section>
+			<section className="calendar-grid">
+				{days.map((day) => (
+					<div className="day-row" key={`weekday-${day}`}>
+						{day}
+					</div>
+				))}
+
+				{emptyBox.map((day) => (
+					<div className="box-empty" key={`empty-${day}`} />
+				))}
+				{allDaysInMonth.map((day) => (
+					<div className="box" key={`day-${day}`}>
+						{day}
+					</div>
+				))}
+			</section>
+			<button
+				type="button"
+				onClick={() => setOpenCalendar(false)}
+				className="button-close"
+			>
+				<img src="/images/croix.svg" alt="fermeture" />
+			</button>
+		</section>
 	);
 }
 export default Calendar;

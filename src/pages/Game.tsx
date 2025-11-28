@@ -104,8 +104,39 @@ function Game() {
 				characters={characters}
 				todayCharacter={todayCharacter}
 			/>
-			<Calendar setOpenCalendar={setOpenCalendar} openCalendar={openCalendar} />
-
+			<button
+				type="button"
+				className="calendar-button"
+				onClick={() => setOpenCalendar(true)}
+			>
+				<img src="/images/calendar.png" alt="Calendrier" />
+			</button>
+			{openCalendar && (
+				<div
+					className="modal-overlay"
+					onClick={() => setOpenCalendar(false)}
+					onKeyDown={(e) => {
+						if (e.key === "Enter" || e.key === "Spacebar" || e.key === " ") {
+							setOpenCalendar(false);
+						}
+					}}
+				>
+					<div
+						className="modal-window"
+						onClick={(e) => e.stopPropagation()}
+						onKeyDown={(e) => {
+							if (e.key === "Enter" || e.key === "Spacebar" || e.key === " ") {
+								setOpenCalendar(false);
+							}
+						}}
+					>
+						<Calendar
+							openCalendar={openCalendar}
+							setOpenCalendar={setOpenCalendar}
+						/>
+					</div>
+				</div>
+			)}
 			{victory && scoreView && (
 				<div className="overlay">
 					<Score

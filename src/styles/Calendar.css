@@ -1,16 +1,11 @@
+.popup-calendar {
+	display: flex;
+	flex-direction: column;
+}
 .calendar-button {
 	background: none;
 	border: none;
 	cursor: pointer;
-}
-.popup-calendar {
-	background-image: url(/images/carte-du-marauder.png);
-	background-size: 100%;
-	background-repeat: no-repeat;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
 }
 .arrow {
 	background: none;
@@ -21,14 +16,10 @@
 .arrow img {
 	width: 50px;
 }
-
-.calendar-date {
-	color: white;
-}
 .calendar-grid {
 	display: grid;
 	grid-template-columns: repeat(7, 75px);
-	grid-template-rows: repeat(6, 75px);
+	grid-template-rows: repeat(7, 75px);
 	justify-content: center;
 	font-family: var(--font-title);
 	border-collapse: collapse;
@@ -54,16 +45,56 @@
 }
 .calendar-header {
 	display: flex;
-	justify-content: space-evenly;
+	flex-direction: column;
+	justify-content: center;
 }
 .button-close {
 	background: none;
 	border: none;
 	cursor: pointer;
 	position: absolute;
-	top: 10px;
-	right: 10px;
+	top: 5px;
+	right: 450px;
 }
 .button-close img {
 	width: 30px;
+}
+.modal-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.6);
+}
+.modal-window {
+	background-image: url(/images/carte-du-marauder.png);
+	background-repeat: no-repeat;
+	overflow-y: auto;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+	animation: modal-appear 0.25s ease-out;
+	height: 70vh;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-size: auto 100%;
+	background-position: center;
+	margin-top: 100px;
+}
+.header-date {
+	font-size: var(--font-size-XL);
+	text-align: center;
+	text-decoration: underline;
+	font-family: var(--font-title);
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+	margin-left: 200px;
+	align-items: center;
+}
+.header-arrow {
+	display: flex;
+	justify-content: space-between;
 }
