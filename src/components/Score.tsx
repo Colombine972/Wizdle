@@ -56,7 +56,9 @@ function Score({
 		score = 0;
 	}
 
-	const [open, setOpen] = useState(false);
+	const [openCharacterCard, setOpenCharacterCard] = useState(false);
+	const [openDailyRanking, setOpenDailyRanking] = useState(false);
+
 	const sortedRanking = useMemo<Player[]>(
 		() =>
 			[
@@ -111,12 +113,12 @@ function Score({
 								<button
 									type="button"
 									className="character-card-button"
-									onClick={() => setOpen((prev) => !prev)}
+									onClick={() => setOpenCharacterCard((prev) => !prev)}
 								>
-									{open ? "-" : "+"}
+									{openCharacterCard ? "-" : "+"}
 								</button>
 							</div>
-							{open && (
+							{openCharacterCard && (
 								<div className="character-card-body-container">
 									<img src={todayCharacter.image} alt="characterToFind.nom" />
 									<table>
@@ -171,17 +173,17 @@ function Score({
 					)}
 					{todayCharacter && (
 						<article>
-							<header>
+							<div className="character-card-header">
 								<img src={banner} alt="banniere de victoire" />
 								<button
 									type="button"
 									className="daily-ranking-button"
-									onClick={() => setOpen((prev) => !prev)}
+									onClick={() => setOpenDailyRanking((prev) => !prev)}
 								>
-									{open ? "-" : "+"}
+									{openDailyRanking ? "-" : "+"}
 								</button>
-							</header>
-							{open && (
+							</div>
+							{openDailyRanking && (
 								<table>
 									<caption>CLASSEMENT</caption>
 									<tbody>
