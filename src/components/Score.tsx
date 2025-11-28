@@ -24,7 +24,9 @@ function Score({
 	const displayTime = moment.utc(timeBis).format("HH:mm:ss");
 	const tentativeBis = Number(attemptCount) || 0;
 	const indiceBis = usedClue ? 500 : 0;
-	let score = 10500 - timeBis * 0.1 - tentativeBis * 500 - indiceBis;
+	let score = Math.floor(
+		10500 - timeBis * 0.1 - tentativeBis * 500 - indiceBis,
+	);
 
 	if (score < 0) {
 		score = 0;
