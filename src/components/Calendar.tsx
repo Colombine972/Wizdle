@@ -1,9 +1,18 @@
 import { useState } from "react";
 import "../styles/Calendar.css";
+import type { Character } from "../interfaces/interfaces";
 
 interface CalendarProps {
 	openCalendar: boolean;
 	setOpenCalendar: React.Dispatch<React.SetStateAction<boolean>>;
+	characters: Character[];
+	getCharacterOfDate: (
+		date: string,
+		array: Character[],
+	) => Character | undefined;
+	setCurrentCharacter: React.Dispatch<
+		React.SetStateAction<Character | undefined>
+	>;
 }
 
 const days = [
@@ -30,7 +39,13 @@ const months = [
 	"Décembre",
 ];
 
-function Calendar({ openCalendar, setOpenCalendar }: CalendarProps) {
+function Calendar({
+	openCalendar,
+	setOpenCalendar,
+	characters,
+	getCharacterOfDate,
+	setCurrentCharacter,
+}: CalendarProps) {
 	const today = new Date();
 	const [currentDate, setCurrentDate] = useState(today);
 	const year = currentDate.getFullYear();
@@ -53,7 +68,15 @@ function Calendar({ openCalendar, setOpenCalendar }: CalendarProps) {
 	for (let i = 1; i <= adjustedFirstDayInFrance; i++) {
 		emptyBox.push(i);
 	}
-
+	const todayDay = today.getDate();
+	const todayMonth = today.getMonth();
+	const todayYear = today.getFullYear();
+	const handleDayClick = (day: number) => {
+		const clickedDate = new Date(year, month, day);
+		const clickedDateString = `${clickedDate.getFullYear()}-${String(clickedDate.getMonth() + 1).padStart(2, "0")}-${String(clickedDate.getDate()).padStart(2, "0")}`;
+		setCurrentCharacter(getCharacterOfDate(clickedDateString, characters));
+		setOpenCalendar(false);
+	};
 	return (
 		<section className="popup-calendar">
 			<section className="calendar-header">
@@ -89,9 +112,15 @@ function Calendar({ openCalendar, setOpenCalendar }: CalendarProps) {
 					<div className="box-empty" key={`empty-${day}`} />
 				))}
 				{allDaysInMonth.map((day) => (
-					<div className="box" key={`day-${day}`}>
+					<button
+						type="button"
+						className={`box ${day === todayDay && month === todayMonth && year === todayYear ? "today" : ""}`}
+						key={`day-${day}`}
+						onClick={() => handleDayClick(day)}
+						disabled={new Date(year, month, day) > today}
+					>
 						{day}
-					</div>
+					</button>
 				))}
 			</section>
 			<button

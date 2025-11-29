@@ -8,3 +8,8 @@
 	width: 35%;
 	max-width: 250px;
 }
+.calendar-button {
+	cursor: pointer;
+	justify-content: center;
+	align-items: center;
+}

@@ -12,7 +12,6 @@
 	border: none;
 	cursor: pointer;
 }
-
 .arrow img {
 	width: 50px;
 }
@@ -97,4 +96,7 @@
 .header-arrow {
 	display: flex;
 	justify-content: space-between;
+}
+.calendar-grid button {
+	background: none;
 }
