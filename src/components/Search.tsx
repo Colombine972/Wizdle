@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useClue } from "../contexts/ClueContext";
 import type { Character } from "../interfaces/interfaces";
 
 interface SearchProps {
@@ -29,6 +30,7 @@ function Search({
 	const [listCharacter, setListCharacter] = useState<Character[]>([]);
 	const [resultNotFound, setResultNotFound] = useState(false);
 	const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
+	const { setClueVisible } = useClue();
 
 	function start() {
 		if (!intervalId) {
@@ -83,6 +85,7 @@ function Search({
 				setScoreView(true);
 			}, 4500);
 			stop();
+			setClueVisible(false);
 		}
 	}
 

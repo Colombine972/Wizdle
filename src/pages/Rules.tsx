@@ -7,6 +7,7 @@ import marauderMapGauche from "/images/marauder-map-gauche.jpg";
 import parcheminVide from "/images/parchemin-vide.webp";
 import validationSerment from "/images/validation-serment.png";
 import "../styles/Rules.css";
+import { useUsername } from "../contexts/UsernameContext";
 
 const fullText = `🪄 Règles du jeu – 
 
@@ -56,10 +57,12 @@ function Rules() {
 			setValidOath(false);
 			setAnswerOath("");
 			setErrorOath(
-				"Pense à regarder de nouveau Harry Potter ... Un indice t'attend juste en dessous",
+				"Pense à regarder de nouveau Harry Potter ... La réponse t'attend dans la boule de cristal !",
 			);
 		}
 	};
+
+	const { username } = useUsername();
 
 	return (
 		<div className="marauder-open-container">
@@ -94,6 +97,7 @@ function Rules() {
 											setAnswerOath(e.target.value);
 											setErrorOath("");
 										}}
+										onKeyDown={(e) => e.key === "Enter" && oathValidate()}
 									/>
 									<button
 										className="button-reset"
@@ -112,7 +116,7 @@ function Rules() {
 									</p>
 									<div className="crystal-section">
 										<button
-											className="button-reset"
+											className="button-reset magic-glow"
 											type="button"
 											title="Affiche un indice"
 											onClick={() => setShowClue(true)}
@@ -139,7 +143,7 @@ function Rules() {
 										className="game-button"
 									>
 										<img src={baguetteMagique} alt="baguette magique" />A toi de
-										jouer, sorcier !
+										jouer, {username} !
 									</button>
 								</div>
 							)}

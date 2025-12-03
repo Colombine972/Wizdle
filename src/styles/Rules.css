@@ -108,7 +108,8 @@
 	resize: none;
 }
 
-.parchment-container.magic-glow {
+.parchment-container.magic-glow,
+button.magic-glow {
 	animation: glowSpell 1.8s ease-out forwards;
 }
 

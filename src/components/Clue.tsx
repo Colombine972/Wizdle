@@ -1,6 +1,6 @@
 import "../styles/clue.css";
+import { useClue } from "../contexts/ClueContext";
 import type { Character } from "../interfaces/interfaces";
-import { useClue } from "../utils/ClueContext";
 
 interface ClueProps {
 	attemptCount: number;
