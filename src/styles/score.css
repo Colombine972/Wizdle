@@ -76,9 +76,15 @@
 	box-sizing: border-box;
 	z-index: 30;
 	-webkit-overflow-scrolling: touch;
-	scrollbar-width: thin;
 }
-
+.scroll-div::-webkit-scrollbar {
+	width: 6px;
+}
+.scroll-div::-webkit-scrollbar-thumb {
+	background: linear-gradient(180deg, #f7d774, #d8b232, #b08524);
+	border-radius: 10px;
+	border: 1px solid #e4c15a;
+}
 #popop-score article {
 	width: 100%;
 	height: auto;
@@ -187,11 +193,12 @@
 }
 
 .character-card-header {
-	display: flex;
-	justify-content: space-between;
+	display: grid;
+	grid-template-columns: 1fr auto;
 	gap: 20px;
 	align-items: center;
 	margin: 0 8px;
+	width: 100%;
 }
 
 .character-card-header h2 {
@@ -200,6 +207,8 @@
 	color: rgba(0, 0, 0, 0.77);
 	text-shadow: 1px 1px 0 #c8aa48, 1px -1px 0 #c8aa48, -1px 1px 0 #c8aa48, -1px
 		-1px 0 #c8aa48;
+	text-align: center;
+	margin-left: 50px;
 }
 
 .open-card-button {
@@ -210,6 +219,7 @@
 	height: 25px;
 	border-radius: 5px;
 	border: none;
+	margin-right: 10px;
 }
 
 .character-card-body-container {

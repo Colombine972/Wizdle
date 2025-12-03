@@ -1,12 +1,12 @@
 import moment from "moment";
 import "../styles/score.css";
 import { useMemo, useState } from "react";
-import banner from "../assets/images/banniere.png";
-import goblet from "../assets/images/coupe.png";
+import banner from "/images/banniere.png";
+import imgCastle from "/images/carte-chateau.png";
+import goblet from "/images/coupe.png";
+import imgCroix from "/images/croix.svg";
+import imgSablier from "/images/sablier.svg";
 import { useUsername } from "../contexts/UsernameContext";
-import imgCastle from "../images/carte-chateau.png";
-import imgCroix from "../images/croix.svg";
-import imgSablier from "../images/sablier.svg";
 import type { Character } from "../interfaces/interfaces";
 import otherPlayersData from "../otherPlayers.json";
 
@@ -50,7 +50,7 @@ function Score({
 	const tentativeBis = Number(attemptCount) || 0;
 	const indiceBis = usedClue ? 500 : 0;
 	let score = Math.floor(
-		10500 - timeBis * 0.1 - tentativeBis * 500 - indiceBis,
+		10500 - timeBis * 0.01 - tentativeBis * 500 - indiceBis,
 	);
 
 	if (score < 0) {

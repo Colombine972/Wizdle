@@ -27,7 +27,7 @@ function Timer({ time }: TimerProps) {
 		<>
 			<div className="chrono-container">
 				<img
-					src="./src/assets/images/retourneur-de-temps.png"
+					src="/images/retourneur-de-temps.png"
 					alt="sablier retourneur de temps"
 				/>
 				<p>{formatTime(time)}</p>

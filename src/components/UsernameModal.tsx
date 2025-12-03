@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useUsername } from "../contexts/UsernameContext";
 import "../styles/UsenameModal.css";
-import enveloppeScellee from "../assets/images/enveloppe-scellee.png";
+import enveloppeScellee from "/images/enveloppe-scellee.png";
 
 function UsernameModal() {
 	const { username, setUsername } = useUsername();
