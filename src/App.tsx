@@ -4,6 +4,7 @@ import "./styles/variable.css";
 import "./styles/App.css";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import UsernameModal from "./components/UsernameModal";
 
 function App() {
 	return (
@@ -27,6 +28,7 @@ function App() {
 				</figure>
 			</aside>
 			<Header />
+			<UsernameModal />
 			<main>
 				<Outlet />
 			</main>

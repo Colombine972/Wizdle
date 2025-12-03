@@ -173,34 +173,35 @@ function Score({
 					)}
 					{todayCharacter && (
 						<article>
-							<div className="character-card-header">
-								<img src={banner} alt="banniere de victoire" />
-								<button
-									type="button"
-									className="daily-ranking-button"
-									onClick={() => setOpenDailyRanking((prev) => !prev)}
-								>
-									{openDailyRanking ? "-" : "+"}
-								</button>
-							</div>
+							<button
+								type="button"
+								className="daily-ranking-button"
+								onClick={() => setOpenDailyRanking((prev) => !prev)}
+							>
+								{openDailyRanking ? "-" : "+"}
+							</button>
+
 							{openDailyRanking && (
-								<table>
-									<caption>CLASSEMENT</caption>
-									<tbody>
-										{rankLabels.map((label, index) => {
-											const player = sortedRanking[index];
-											if (!player) return null;
-											return (
-												<tr key={label}>
-													<th scope="row">{label}</th>
-													<td>
-														{player.name}, {player.score} points
-													</td>
-												</tr>
-											);
-										})}
-									</tbody>
-								</table>
+								<div className="character-card-header">
+									<img src={banner} alt="banniere de victoire" />
+									<table>
+										<caption>CLASSEMENT</caption>
+										<tbody>
+											{rankLabels.map((label, index) => {
+												const player = sortedRanking[index];
+												if (!player) return null;
+												return (
+													<tr key={label}>
+														<th scope="row">{label}</th>
+														<td>
+															{player.name}, {player.score} points
+														</td>
+													</tr>
+												);
+											})}
+										</tbody>
+									</table>
+								</div>
 							)}
 						</article>
 					)}

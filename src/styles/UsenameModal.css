@@ -1,0 +1,107 @@
+.username-modal-container {
+	position: fixed;
+	inset: 0;
+	background-image: url("../assets/images/image-de-fond.jpg");
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 100;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+dialog::backdrop {
+	background: rgba(189, 45, 6, 0.87);
+}
+
+dialog {
+	border: none;
+	padding: 2rem 1.5rem;
+	border-radius: 12px;
+	width: 90%;
+	max-width: 380px;
+	text-align: center;
+	background: rgba(205, 185, 41, 0.482);
+	box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+dialog input {
+	width: 100%;
+	padding: 0.6rem 0.8rem;
+	margin-bottom: 1rem;
+	border: 2px solid var(--text-stroke);
+	border-radius: 6px;
+	font-size: 1rem;
+	outline: none;
+}
+
+dialog input:focus {
+	border-color: var(--font-color-card);
+}
+
+dialog button {
+	--border: 3px;
+	position: relative;
+	border: none;
+	border-radius: 12px;
+	padding: 0.8rem 1.8rem;
+	background: radial-gradient(
+		circle at 20% 0%,
+		#ffec8b,
+		#d4af37 40%,
+		#8b7500 100%
+	);
+	color: #4c3217;
+	font-family: "Cinzel", serif;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+dialog button::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	padding: var(--border);
+	border-radius: inherit;
+	background: linear-gradient(135deg, #d4af37, #fff7a2, #b8860b, #fff0c0);
+	background-size: 300% 300%;
+	animation: shimmer 4s ease-in-out infinite;
+	-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+	-webkit-mask-composite: xor;
+	mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+	mask-composite: exclude;
+	pointer-events: none;
+	box-shadow: 0 0 10px rgba(255, 223, 0, 0.5), 0 0 30px rgba(255, 223, 0, 0.3);
+}
+
+@keyframes shimmer {
+	0% {
+		background-position: 0% 50%;
+		opacity: 0.9;
+	}
+	50% {
+		background-position: 100% 50%;
+		opacity: 1;
+	}
+	100% {
+		background-position: 0% 50%;
+		opacity: 0.9;
+	}
+}
+
+dialog button:hover {
+	transform: translateY(-1px) scale(1.03);
+	box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
+}
+
+dialog button:active {
+	transform: scale(0.98);
+	box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	dialog button::after {
+		animation: none;
+	}
+}
