@@ -23,9 +23,10 @@ function Game() {
 	const [usedClue, setUsedClue] = useState(false);
 	const [scoreView, setScoreView] = useState(false);
 	const [openCalendar, setOpenCalendar] = useState(false);
+	const [newKey, setNewKey] = useState(0);
 	const today = new Date().toISOString().split("T")[0];
 
-	const dayFromBegin = useCallback((date: string, beginning = "2025-11-18") => {
+	const dayFromBegin = useCallback((date: string, beginning = "2025-11-01") => {
 		const today = new Date(date);
 		const beginningDate = new Date(beginning);
 		const difference = today.getTime() - beginningDate.getTime();
@@ -72,86 +73,105 @@ function Game() {
 			.catch(() => setErrorApi("Les personnages ont disparu 😲"));
 	}, [getCharacterOfDate, today]);
 
+	function resetGame() {
+		setNewKey((prev) => prev + 1);
+		setAnswers([]);
+		setVictory(false);
+		setAttemptCount(0);
+		setTime(0);
+		setUsedClue(false);
+		setScoreView(false);
+	}
+
 	return (
 		<>
-			<section className="timer-clue">
-				<article>
-					<Timer time={time} />
-				</article>
-				<article>
-					<Clue
-						attemptCount={attemptCount}
+			<div key={newKey}>
+				<section className="timer-clue">
+					<article>
+						<Timer time={time} />
+					</article>
+					<article>
+						<Clue
+							attemptCount={attemptCount}
+							todayCharacter={currentCharacter}
+							setUsedClue={setUsedClue}
+						/>
+					</article>
+				</section>
+				{!victory && (
+					<Search
+						setTime={setTime}
+						setAnswers={setAnswers}
+						errorApi={errorApi}
+						characters={characters}
+						setErrorApi={setErrorApi}
+						answers={answers}
+						setVictory={setVictory}
 						todayCharacter={currentCharacter}
-						setUsedClue={setUsedClue}
+						setAttemptCount={setAttemptCount}
+						setScoreView={setScoreView}
 					/>
-				</article>
-			</section>
-			{!victory && (
-				<Search
-					setTime={setTime}
-					setAnswers={setAnswers}
-					errorApi={errorApi}
-					characters={characters}
-					setErrorApi={setErrorApi}
+				)}
+				<Answers
 					answers={answers}
-					setVictory={setVictory}
+					characters={characters}
 					todayCharacter={currentCharacter}
-					setAttemptCount={setAttemptCount}
-					setScoreView={setScoreView}
 				/>
-			)}
-			<Answers
-				answers={answers}
-				characters={characters}
-				todayCharacter={currentCharacter}
-			/>
-			<button
-				type="button"
-				className="calendar-button"
-				onClick={() => setOpenCalendar(true)}
-			>
-				<img src="/images/calendar.png" alt="Calendrier" />
-			</button>
-			{openCalendar && (
-				<div
-					className="modal-overlay"
-					onClick={() => setOpenCalendar(false)}
-					onKeyDown={(e) => {
-						if (e.key === "Enter" || e.key === "Spacebar" || e.key === " ") {
-							setOpenCalendar(false);
-						}
-					}}
-				>
+				<div className="calendar-wrapper">
+					<button
+						type="button"
+						className="calendar-button"
+						onClick={() => setOpenCalendar(true)}
+					>
+						<img src="/images/calendar.png" alt="Calendrier" />
+					</button>
+				</div>
+				{openCalendar && (
 					<div
-						className="modal-window"
-						onClick={(e) => e.stopPropagation()}
+						className="modal-overlay"
+						onClick={() => setOpenCalendar(false)}
 						onKeyDown={(e) => {
 							if (e.key === "Enter" || e.key === "Spacebar" || e.key === " ") {
 								setOpenCalendar(false);
 							}
 						}}
 					>
-						<Calendar
-							openCalendar={openCalendar}
-							setOpenCalendar={setOpenCalendar}
-							characters={characters}
-							getCharacterOfDate={getCharacterOfDate}
-							setCurrentCharacter={setCurrentCharacter}
+						<div
+							className="modal-window"
+							onClick={(e) => e.stopPropagation()}
+							onKeyDown={(e) => {
+								if (
+									e.key === "Enter" ||
+									e.key === "Spacebar" ||
+									e.key === " "
+								) {
+									setOpenCalendar(false);
+								}
+							}}
+						>
+							<Calendar
+								openCalendar={openCalendar}
+								setOpenCalendar={setOpenCalendar}
+								characters={characters}
+								getCharacterOfDate={getCharacterOfDate}
+								setCurrentCharacter={setCurrentCharacter}
+								resetGame={resetGame}
+							/>
+						</div>
+					</div>
+				)}
+				{victory && scoreView && (
+					<div className="overlay">
+						<Score
+							time={time}
+							usedClue={usedClue}
+							attemptCount={attemptCount}
+							todayCharacter={currentCharacter}
+							setScoreView={setScoreView}
 						/>
 					</div>
-				</div>
-			)}
-			{victory && scoreView && (
-				<div className="overlay">
-					<Score
-						time={time}
-						usedClue={usedClue}
-						attemptCount={attemptCount}
-						todayCharacter={todayCharacter}
-						setScoreView={setScoreView}
-					/>
-				</div>
-			)}
+				)}
+			</div>
 		</>
 	);
 }

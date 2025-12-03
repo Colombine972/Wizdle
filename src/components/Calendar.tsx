@@ -13,6 +13,7 @@ interface CalendarProps {
 	setCurrentCharacter: React.Dispatch<
 		React.SetStateAction<Character | undefined>
 	>;
+	resetGame: () => void;
 }
 
 const days = [
@@ -40,17 +41,16 @@ const months = [
 ];
 
 function Calendar({
-	openCalendar,
 	setOpenCalendar,
 	characters,
 	getCharacterOfDate,
 	setCurrentCharacter,
+	resetGame,
 }: CalendarProps) {
 	const today = new Date();
 	const [currentDate, setCurrentDate] = useState(today);
 	const year = currentDate.getFullYear();
 	const month = currentDate.getMonth();
-	const getTodayDate = () => currentDate.toLocaleDateString();
 	const firstDay = new Date(year, month, 1).getDay();
 	const adjustedFirstDayInFrance = (firstDay + 6) % 7;
 	const daysInMonth = new Date(year, month + 1, 0).getDate();
@@ -76,7 +76,9 @@ function Calendar({
 		const clickedDateString = `${clickedDate.getFullYear()}-${String(clickedDate.getMonth() + 1).padStart(2, "0")}-${String(clickedDate.getDate()).padStart(2, "0")}`;
 		setCurrentCharacter(getCharacterOfDate(clickedDateString, characters));
 		setOpenCalendar(false);
+		resetGame();
 	};
+
 	return (
 		<section className="popup-calendar">
 			<section className="calendar-header">
@@ -117,7 +119,10 @@ function Calendar({
 						className={`box ${day === todayDay && month === todayMonth && year === todayYear ? "today" : ""}`}
 						key={`day-${day}`}
 						onClick={() => handleDayClick(day)}
-						disabled={new Date(year, month, day) > today}
+						disabled={
+							new Date(year, month, day) > today ||
+							new Date(year, month, day) < new Date(2025, 10, 1)
+						}
 					>
 						{day}
 					</button>
