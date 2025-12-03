@@ -2,6 +2,7 @@ import moment from "moment";
 import "../styles/score.css";
 import { useMemo, useState } from "react";
 import banner from "../assets/images/banniere.png";
+import goblet from "../assets/images/coupe.png";
 import { useUsername } from "../contexts/UsernameContext";
 import imgCastle from "../images/carte-chateau.png";
 import imgCroix from "../images/croix.svg";
@@ -88,7 +89,7 @@ function Score({
 					}}
 				/>
 				<div className="scroll-div">
-					<article>
+					<article className="score-article">
 						<h2>MAGISTRAL !</h2>
 						<p>{score} pts</p>
 						<p>pour {house}</p>
@@ -107,12 +108,12 @@ function Score({
 					</article>
 
 					{todayCharacter && (
-						<article>
+						<article className="character-card-article">
 							<div className="character-card-header">
 								<h2>{todayCharacter.nom}</h2>
 								<button
 									type="button"
-									className="character-card-button"
+									className="open-card-button"
 									onClick={() => setOpenCharacterCard((prev) => !prev)}
 								>
 									{openCharacterCard ? "-" : "+"}
@@ -125,7 +126,7 @@ function Score({
 										<tbody>
 											<tr>
 												<th scope="row" className="align-to-right ">
-													espece :
+													Espece :
 												</th>
 												<td>{todayCharacter.espece || "inconnue"}</td>
 											</tr>
@@ -173,19 +174,37 @@ function Score({
 					)}
 					{todayCharacter && (
 						<article>
+							{openDailyRanking && (
+								<div className="img-classment">
+									<img
+										src={banner}
+										alt="banniere de victoire"
+										className="banniere"
+									/>
+									<img
+										src={goblet}
+										alt="coupe des 3 sorciers"
+										className="goblet"
+									/>
+									<img
+										src={banner}
+										alt="banniere de victoire"
+										className="banniere"
+									/>
+								</div>
+							)}
 							<div className="character-card-header">
-								<img src={banner} alt="banniere de victoire" />
+								<h2>Classement</h2>
 								<button
 									type="button"
-									className="daily-ranking-button"
+									className="open-card-button"
 									onClick={() => setOpenDailyRanking((prev) => !prev)}
 								>
 									{openDailyRanking ? "-" : "+"}
 								</button>
 							</div>
 							{openDailyRanking && (
-								<table>
-									<caption>CLASSEMENT</caption>
+								<table className="table-ranking">
 									<tbody>
 										{rankLabels.map((label, index) => {
 											const player = sortedRanking[index];
