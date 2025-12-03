@@ -17,6 +17,15 @@
 		box-shadow: 0 0 8px gold;
 	}
 }
+
+.glowTrue {
+	box-shadow: inset 0px 0px 40px 0px var(--background-true);
+}
+
+.glowFalse {
+	box-shadow: inset 0px 0px 40px 0px var(--background-false);
+}
+
 .box-false {
 	background: var(--background-false);
 }
@@ -24,16 +33,19 @@
 .box-true {
 	background: var(--background-true);
 }
+
 .nom-true {
 	color: var(--background-true);
 	font-weight: bold;
 	background-color: antiquewhite;
 }
+
 .nom-false {
 	color: var(--background-false);
 	font-weight: bold;
 	background-color: antiquewhite;
 }
+
 html,
 body {
 	margin: 0;
@@ -89,6 +101,7 @@ section table thead tr th:nth-child(1) {
 	max-height: 80px;
 	max-width: 80px;
 }
+
 .cell-principal {
 	height: 80px;
 	display: flex;
@@ -96,9 +109,9 @@ section table thead tr th:nth-child(1) {
 	align-items: center;
 	padding: 0 10px;
 	max-width: 250px;
-	margin-left: 10px;
 	gap: 20px;
 }
+
 .cell-principal span {
 	font-size: var(--font-size-L);
 	width: 60%;
@@ -108,28 +121,36 @@ section table thead tr th:nth-child(1) {
 	margin: 2rem auto;
 	border-radius: 12px;
 }
+
 #table-game td {
 	opacity: 0;
 	animation: cellReveal 1s ease-out forwards, sparkle 1s ease-in-out;
 }
+
 #table-game td:nth-child(7) {
 	animation-delay: 0.4s;
 }
+
 #table-game td:nth-child(6) {
 	animation-delay: 0.8s;
 }
+
 #table-game td:nth-child(5) {
 	animation-delay: 1.2s;
 }
+
 #table-game td:nth-child(4) {
 	animation-delay: 1.6s;
 }
+
 #table-game td:nth-child(3) {
 	animation-delay: 2s;
 }
+
 #table-game td:nth-child(2) {
 	animation-delay: 2.4s;
 }
+
 #table-game td:nth-child(1) {
 	animation-delay: 2.8s;
 }
