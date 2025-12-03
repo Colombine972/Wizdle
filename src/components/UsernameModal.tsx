@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useUsername } from "../contexts/UsernameContext";
 import "../styles/UsenameModal.css";
+import enveloppeScellee from "../assets/images/enveloppe-scellee.png";
 
 function UsernameModal() {
 	const { username, setUsername } = useUsername();
@@ -24,7 +25,8 @@ function UsernameModal() {
 					onKeyDown={(e) => e.key === "Enter" && validatedName()}
 				/>
 				<button type="button" onClick={validatedName}>
-					Sceller
+					<img src={enveloppeScellee} alt="enveloppe scellée" />
+					Scelles ton nom
 				</button>
 			</dialog>
 		</div>
