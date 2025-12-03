@@ -1,7 +1,9 @@
 import { Link } from "react-router";
 import "../styles/Home.css";
+import { useUsername } from "../contexts/UsernameContext";
 
 function Home() {
+	const { username } = useUsername();
 	return (
 		<>
 			<h1 className="home-title">
@@ -25,7 +27,7 @@ function Home() {
 							src="./src/assets/images/baguette-magique.png"
 							alt="baguette magique"
 						/>
-						À toi de jouer, sorcier !
+						À toi de jouer, {username} !
 					</button>
 				</Link>
 				<Link to="/training">

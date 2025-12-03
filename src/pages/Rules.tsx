@@ -7,6 +7,7 @@ import marauderMapGauche from "../assets/images/marauder-map-gauche.jpg";
 import parcheminVide from "../assets/images/parchemin-vide.webp";
 import validationSerment from "../assets/images/validation-serment.png";
 import "../styles/Rules.css";
+import { useUsername } from "../contexts/UsernameContext";
 
 const fullText = `🪄 Règles du jeu – 
 
@@ -60,6 +61,8 @@ function Rules() {
 			);
 		}
 	};
+
+	const { username } = useUsername();
 
 	return (
 		<div className="marauder-open-container">
@@ -139,7 +142,7 @@ function Rules() {
 										className="game-button"
 									>
 										<img src={baguetteMagique} alt="baguette magique" />A toi de
-										jouer, sorcier !
+										jouer, {username} !
 									</button>
 								</div>
 							)}
