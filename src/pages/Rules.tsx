@@ -97,7 +97,6 @@ function Rules() {
 											setAnswerOath(e.target.value);
 											setErrorOath("");
 										}}
-										onKeyDown={(e) => e.key === "Enter" && oathValidate()}
 									/>
 									<button
 										className="button-reset"
