@@ -1,4 +1,4 @@
-import "../styles/clue.css";
+import "../styles/Clue.css";
 import { useClue } from "../contexts/ClueContext";
 import type { Character } from "../interfaces/interfaces";
 
