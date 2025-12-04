@@ -1,5 +1,5 @@
 import moment from "moment";
-import "../styles/score.css";
+import "../styles/Score.css";
 import { useMemo, useState } from "react";
 import banner from "/images/banniere.png";
 import imgCastle from "/images/carte-chateau.png";
