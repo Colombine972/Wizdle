@@ -76,19 +76,6 @@
 	box-sizing: border-box;
 	z-index: 30;
 	-webkit-overflow-scrolling: touch;
-<<<<<<< HEAD
-}
-
-.scroll-div::-webkit-scrollbar {
-	width: 6px;
-}
-
-.scroll-div::-webkit-scrollbar-thumb {
-	background: linear-gradient(180deg, #f7d774, #d8b232, #b08524);
-	border-radius: 10px;
-	border: 1px solid #e4c15a;
-=======
->>>>>>> fefa21c97c7a6917e244739ccb08076972b8b79e
 }
 .scroll-div::-webkit-scrollbar {
 	width: 6px;
