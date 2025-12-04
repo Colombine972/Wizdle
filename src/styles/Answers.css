@@ -52,7 +52,7 @@ body {
 	padding: 0;
 	height: 100vh;
 	width: 100%;
-	background-image: url("../assets/images/image-de-fond.jpg");
+	background-image: url("/images/image-de-fond.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;

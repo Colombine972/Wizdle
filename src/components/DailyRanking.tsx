@@ -33,7 +33,7 @@ export default function DailyRanking({
 	return (
 		<section id="daily-ranking-container">
 			<header>
-				<img src="../assets/images/banniere.png" alt="banniere de victoire" />
+				<img src="/images/banniere.png" alt="banniere de victoire" />
 				<button
 					type="button"
 					className="daly-ranking-button"
