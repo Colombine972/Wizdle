@@ -1,0 +1,122 @@
+.popup-calendar {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.arrow {
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+.arrow img {
+	width: 100px;
+}
+.calendar-grid {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	grid-template-rows: repeat(7, 1fr);
+	justify-content: center;
+	font-family: var(--font-title);
+	border-collapse: collapse;
+	gap: 1.5px;
+	width: 480px;
+}
+.day-row {
+	display: flex;
+	justify-content: center;
+	align-items: end;
+	font-weight: bold;
+}
+.box {
+	border: 1.5px solid black;
+	display: flex;
+	justify-content: end;
+	align-items: end;
+	padding: 5px;
+	aspect-ratio: 1 / 1;
+}
+.box:hover {
+	transform: scale(1.03);
+	cursor: pointer;
+	box-shadow: rgba(200, 170, 72, 1) 0px 0px 10px;
+}
+.calendar-header {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 30rem;
+}
+.button-close {
+	background: none;
+	border: none;
+	cursor: pointer;
+	position: absolute;
+	top: 4px;
+	right: 4px;
+}
+.button-close img {
+	width: 30px;
+}
+.modal-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.6);
+}
+.modal-window {
+	background-image: url(/images/carte-du-marauder.png);
+	background-repeat: no-repeat;
+	overflow-y: auto;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+	animation: modal-appear 0.25s ease-out;
+	height: 600px;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-size: cover;
+	background-position: center;
+	width: 950px;
+	max-width: 1000px;
+	margin: 50px auto;
+}
+.header-date {
+	font-size: var(--font-size-XL);
+	text-align: center;
+	text-decoration: underline;
+	font-family: var(--font-title);
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+	margin-left: 11.25rem;
+	align-items: center;
+}
+.header-arrow {
+	display: flex;
+	justify-content: space-between;
+}
+.calendar-grid button {
+	background: none;
+}
+
+@media (max-width: 700px) {
+	.modal-overlay {
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+	.modal-window {
+		width: 950px;
+		max-width: none;
+		margin: 50px auto;
+		display: block;
+		overflow: visible;
+	}
+	.popup-calendar {
+		min-width: 700px;
+		overflow-x: visible;
+	}
+}

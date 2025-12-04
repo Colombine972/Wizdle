@@ -1,0 +1,141 @@
+import { useState } from "react";
+import "../styles/Calendar.css";
+import type { Character } from "../interfaces/interfaces";
+
+interface CalendarProps {
+	openCalendar: boolean;
+	setOpenCalendar: React.Dispatch<React.SetStateAction<boolean>>;
+	characters: Character[];
+	getCharacterOfDate: (
+		date: string,
+		array: Character[],
+	) => Character | undefined;
+	setCurrentCharacter: React.Dispatch<
+		React.SetStateAction<Character | undefined>
+	>;
+	resetGame: () => void;
+}
+
+const days = [
+	"Lundi",
+	"Mardi",
+	"Mercredi",
+	"Jeudi",
+	"Vendredi",
+	"Samedi",
+	"Dimanche",
+];
+const months = [
+	"Janvier",
+	"Février",
+	"Mars",
+	"Avril",
+	"Mai",
+	"Juin",
+	"Juillet",
+	"Août",
+	"Septembre",
+	"Octobre",
+	"Novembre",
+	"Décembre",
+];
+
+function Calendar({
+	setOpenCalendar,
+	characters,
+	getCharacterOfDate,
+	setCurrentCharacter,
+	resetGame,
+}: CalendarProps) {
+	const today = new Date();
+	const [currentDate, setCurrentDate] = useState(today);
+	const year = currentDate.getFullYear();
+	const month = currentDate.getMonth();
+	const firstDay = new Date(year, month, 1).getDay();
+	const adjustedFirstDayInFrance = (firstDay + 6) % 7;
+	const daysInMonth = new Date(year, month + 1, 0).getDate();
+	const goToPreviousMonth = () => {
+		setCurrentDate(new Date(year, month - 1, 1));
+	};
+	const goToNextMonth = () => {
+		setCurrentDate(new Date(year, month + 1, 1));
+	};
+	const allDaysInMonth = [];
+	for (let i = 1; i <= daysInMonth; i++) {
+		allDaysInMonth.push(i);
+	}
+	const emptyBox = [];
+	for (let i = 1; i <= adjustedFirstDayInFrance; i++) {
+		emptyBox.push(i);
+	}
+	const todayDay = today.getDate();
+	const todayMonth = today.getMonth();
+	const todayYear = today.getFullYear();
+	const handleDayClick = (day: number) => {
+		const clickedDate = new Date(year, month, day);
+		const clickedDateString = `${clickedDate.getFullYear()}-${String(clickedDate.getMonth() + 1).padStart(2, "0")}-${String(clickedDate.getDate()).padStart(2, "0")}`;
+		setCurrentCharacter(getCharacterOfDate(clickedDateString, characters));
+		setOpenCalendar(false);
+		resetGame();
+	};
+
+	return (
+		<section className="popup-calendar">
+			<section className="calendar-header">
+				<section className="header-arrow">
+					<button type="button" className="arrow" onClick={goToPreviousMonth}>
+						<img
+							src="/images/fleche-gauche.png"
+							alt="Previous Month"
+							className="arrow"
+						/>
+					</button>
+					<button type="button" className="arrow" onClick={goToNextMonth}>
+						<img
+							src="/images/fleche-droite.png"
+							alt="Next Month"
+							className="arrow"
+						/>
+					</button>
+				</section>
+				<section className="header-date">
+					<h2 className="calendar-date">{months[month]}</h2>
+					<h2 className="calendar-date">{year}</h2>
+				</section>
+			</section>
+			<section className="calendar-grid">
+				{days.map((day) => (
+					<div className="day-row" key={`weekday-${day}`}>
+						{day}
+					</div>
+				))}
+
+				{emptyBox.map((day) => (
+					<div className="box-empty" key={`empty-${day}`} />
+				))}
+				{allDaysInMonth.map((day) => (
+					<button
+						type="button"
+						className={`box ${day === todayDay && month === todayMonth && year === todayYear ? "today" : ""}`}
+						key={`day-${day}`}
+						onClick={() => handleDayClick(day)}
+						disabled={
+							new Date(year, month, day) > today ||
+							new Date(year, month, day) < new Date(2025, 10, 1)
+						}
+					>
+						{day}
+					</button>
+				))}
+			</section>
+			<button
+				type="button"
+				onClick={() => setOpenCalendar(false)}
+				className="button-close"
+			>
+				<img src="/images/croix.svg" alt="fermeture" />
+			</button>
+		</section>
+	);
+}
+export default Calendar;

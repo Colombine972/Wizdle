@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import baguetteMagique from "../assets/images/baguette-magique.png";
-import indice from "../assets/images/indice.webp";
-import marauderMapDroite from "../assets/images/marauder-map-droite.jpg";
-import marauderMapGauche from "../assets/images/marauder-map-gauche.jpg";
-import parcheminVide from "../assets/images/parchemin-vide.webp";
-import validationSerment from "../assets/images/validation-serment.png";
+import baguetteMagique from "/images/baguette-magique.png";
+import indice from "/images/indice.webp";
+import marauderMapDroite from "/images/marauder-map-droite.jpg";
+import marauderMapGauche from "/images/marauder-map-gauche.jpg";
+import parcheminVide from "/images/parchemin-vide.webp";
+import validationSerment from "/images/validation-serment.png";
 import "../styles/Rules.css";
 import { useUsername } from "../contexts/UsernameContext";
 
@@ -57,7 +57,7 @@ function Rules() {
 			setValidOath(false);
 			setAnswerOath("");
 			setErrorOath(
-				"Pense à regarder de nouveau Harry Potter ... Un indice t'attend juste en dessous",
+				"Pense à regarder de nouveau Harry Potter ... La réponse t'attend dans la boule de cristal !",
 			);
 		}
 	};
@@ -115,7 +115,7 @@ function Rules() {
 									</p>
 									<div className="crystal-section">
 										<button
-											className="button-reset"
+											className="button-reset magic-glow"
 											type="button"
 											title="Affiche un indice"
 											onClick={() => setShowClue(true)}

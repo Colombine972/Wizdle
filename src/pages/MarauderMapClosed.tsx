@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import parcheminClose from "../assets/images/marauder-map-close.jpg";
+import parcheminClose from "/images/marauder-map-close.jpg";
 import "../styles/MarauderMapClosed.css";
 
 function MarauderMapClosed() {

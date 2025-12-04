@@ -8,3 +8,12 @@
 	width: 35%;
 	max-width: 250px;
 }
+.calendar-button {
+	cursor: pointer;
+	background: none;
+	border: none;
+}
+.calendar-wrapper {
+	display: flex;
+	justify-content: center;
+}

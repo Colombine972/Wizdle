@@ -97,7 +97,7 @@ function Training() {
 			)}
 
 			<button type="button" onClick={newGame} className="randomizer">
-				<img src="./src/assets/images/logo-vif-dor.png" alt="vif d'or" />
+				<img src="/images/logo-vif-dor.png" alt="vif d'or" />
 				Nouvelle partie ?
 			</button>
 		</>
