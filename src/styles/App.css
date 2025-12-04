@@ -2,6 +2,10 @@ html {
 	font-size: 12px;
 }
 
+button {
+	color: black;
+}
+
 .background {
 	display: flex;
 	flex-direction: column;
