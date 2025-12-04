@@ -26,7 +26,7 @@ function Training() {
 	const { setClueVisible } = useClue();
 
 	useEffect(() => {
-		fetch("https://test-api-5zsf.onrender.com/harry_potter")
+		fetch(import.meta.env.VITE_API_URL)
 			.then((response) => response.json())
 			.then((characters) => {
 				setCharacters(characters);
