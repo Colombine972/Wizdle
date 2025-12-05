@@ -12,12 +12,9 @@ function App() {
 			<aside>
 				<figure>
 					<audio controls>
-						<source
-							src="./src/assets/media/harry-potter-generique.mp3"
-							type="audio/mpeg"
-						/>
+						<source src="/media/harry-potter-generique.mp3" type="audio/mpeg" />
 						<track
-							src="./src/assets/media/harry-potter-generique.vtt"
+							src="/media/harry-potter-generique.vtt"
 							kind="captions"
 							srcLang="fr"
 							label="Transcription audio"
