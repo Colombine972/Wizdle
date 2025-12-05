@@ -26,7 +26,7 @@ function UsernameModal() {
 				/>
 				<button type="button" onClick={validatedName}>
 					<img src={enveloppeScellee} alt="enveloppe scellée" />
-					Scelles ton nom
+					Scelle ton nom
 				</button>
 			</dialog>
 		</div>
