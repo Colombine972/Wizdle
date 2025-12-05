@@ -41,6 +41,14 @@
 	cursor: pointer;
 	box-shadow: rgba(200, 170, 72, 1) 0px 0px 10px;
 }
+
+.box:disabled {
+	box-shadow: none;
+	cursor: auto;
+	transform: none;
+	color: grey;
+}
+
 .calendar-header {
 	display: flex;
 	flex-direction: column;

@@ -27,7 +27,7 @@ function Home() {
 				<Link to="/training">
 					<button type="button">
 						<img src="/images/logo-vif-dor.png" alt="vif d'or" />
-						Révises tes BUSE
+						Révise tes BUSE
 					</button>
 				</Link>
 			</section>
